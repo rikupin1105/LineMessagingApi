@@ -44,11 +44,12 @@
         /// <param name="quickReply">
         /// QuickReply
         /// </param>
-        public AudioMessage(string originalContentUrl, long duration, QuickReply quickReply = null)
+        public AudioMessage(string originalContentUrl, long duration, QuickReply quickReply = null, MessageSender messageSender = null)
         {
             OriginalContentUrl = originalContentUrl;
             Duration = duration;
             QuickReply = quickReply;
+            Sender = messageSender;
         }
     }
 }

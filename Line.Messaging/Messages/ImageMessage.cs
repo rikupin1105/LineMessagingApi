@@ -52,11 +52,12 @@
         /// <param name="quickReply">
         /// QuickReply
         /// </param>
-        public ImageMessage(string originalContentUrl, string previerImageUrl, QuickReply quickReply = null)
+        public ImageMessage(string originalContentUrl, string previerImageUrl, QuickReply quickReply = null, MessageSender messageSender = null)
         {
             OriginalContentUrl = originalContentUrl;
             PreviewImageUrl = previerImageUrl;
             QuickReply = quickReply;
+            Sender = messageSender;
         }
     }
 }

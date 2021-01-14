@@ -34,9 +34,10 @@ namespace Line.Messaging
         /// Alternative text.
         /// Max: 400 characters
         ///</param>
-        public FlexMessage(string altText)
+        public FlexMessage(string altText, MessageSender messageSender = null)
         {
             AltText = altText.Substring(0, Math.Min(altText.Length, 400));
+            Sender = messageSender;
         }
 
         public static BubbleContainerFlexMessage CreateBubbleMessage(string altText)

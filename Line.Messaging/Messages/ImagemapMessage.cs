@@ -71,7 +71,7 @@ namespace Line.Messaging
         /// <param name="video">
         /// Video to play on imagemap
         /// </param>
-        public ImagemapMessage(string baseUrl, string altText, ImagemapSize baseSize, IList<IImagemapAction> actions, QuickReply quickReply = null, Video video = null)
+        public ImagemapMessage(string baseUrl, string altText, ImagemapSize baseSize, IList<IImagemapAction> actions, QuickReply quickReply = null, Video video = null, MessageSender messageSender = null)
         {
             BaseUrl = baseUrl;
             AltText = altText.Substring(0, Math.Min(altText.Length, 400)); ;
@@ -79,6 +79,7 @@ namespace Line.Messaging
             Actions = actions;
             QuickReply = quickReply;
             Video = video;
+            Sender = messageSender;
         }
     }
 }

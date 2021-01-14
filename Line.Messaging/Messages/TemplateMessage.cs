@@ -41,11 +41,12 @@ namespace Line.Messaging
         /// <param name="quickReply">
         /// QuickRepy
         /// </param>
-        public TemplateMessage(string altText, ITemplate template, QuickReply quickReply = null)
+        public TemplateMessage(string altText, ITemplate template, QuickReply quickReply = null, MessageSender messageSender = null)
         {
             AltText = altText.Substring(0, Math.Min(altText.Length, 400));
             Template = template;
             QuickReply = quickReply;
+            Sender = messageSender;
         }
     }
 }

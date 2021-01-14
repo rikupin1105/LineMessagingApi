@@ -58,13 +58,14 @@ namespace Line.Messaging
         /// <param name="quickReply">
         /// QuickReply
         /// </param>
-        public LocationMessage(string title, string address, decimal latitude, decimal longitude, QuickReply quickReply = null)
+        public LocationMessage(string title, string address, decimal latitude, decimal longitude, QuickReply quickReply = null, MessageSender messageSender = null)
         {
             Title = title.Substring(0, Math.Min(title.Length, 100));
             Address = address.Substring(0, Math.Min(address.Length, 100));
             Latitude = latitude;
             Longitude = longitude;
             QuickReply = quickReply;
+            Sender = messageSender;
         }
     }
 }

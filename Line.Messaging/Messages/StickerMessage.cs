@@ -35,11 +35,12 @@
         /// <param name="quickReply">
         /// QuickReply
         /// </param>
-        public StickerMessage(string packageId, string stickerId, QuickReply quickReply = null)
+        public StickerMessage(string packageId, string stickerId, QuickReply quickReply = null, MessageSender messageSender = null)
         {
             PackageId = packageId;
             StickerId = stickerId;
             QuickReply = quickReply;
+            Sender = messageSender;
         }
     }
 }
