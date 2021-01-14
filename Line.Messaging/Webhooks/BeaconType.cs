@@ -7,9 +7,9 @@
         /// </summary>
         Enter,
         /// <summary>
-        /// Left beacon's reception range
+        /// Stay beacon's reception range
         /// </summary>
-        Leave,
+        Stay,
         /// <summary>
         /// Tapped beacon banner 
         /// </summary>
