@@ -6,7 +6,7 @@
     <Company>rikupin</Company>
     <Product>Line Messaging API</Product>
     <Description></Description>
-    <Version>1.4.6.1</Version>
+    <Version>1.4.6.2</Version>
     <Copyright></Copyright>
     <PackageLicenseUrl>https://github.com/pierre3/LineMessagingApi/blob/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -16,7 +16,7 @@
     <RepositoryUrl>https://github.com/rikupin/LineMessagingApi/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>1.4.6.1</AssemblyVersion>
+    <AssemblyVersion>1.4.6.2</AssemblyVersion>
     <FileVersion>1.4.6.1</FileVersion>
     <PackageId>Line.Messaging.rikupin</PackageId>
   </PropertyGroup>
@@ -32,7 +32,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 </Project>
