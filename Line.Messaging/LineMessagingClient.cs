@@ -267,7 +267,7 @@ $@"{{
         /// <returns>Content as ContentStream</returns>
         public virtual async Task<ContentStream> GetContentStreamAsync(string messageId)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{_uri}/bot/message/{messageId}/content");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://api-data.line.me/v2/bot/message/{messageId}/content");
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
             return new ContentStream(await response.Content.ReadAsStreamAsync(), response.Content.Headers);
@@ -281,7 +281,7 @@ $@"{{
         /// <returns>Content as byte array</returns>
         public virtual async Task<byte[]> GetContentBytesAsync(string messageId)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{_uri}/bot/message/{messageId}/content");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://api-data.line.me/v2/bot/message/{messageId}/content");
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
             return await response.Content.ReadAsByteArrayAsync();
@@ -578,7 +578,7 @@ $@"{{
         /// <returns>Image as ContentStream</returns>
         public virtual async Task<ContentStream> DownloadRichMenuImageAsync(string richMenuId)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{_uri}/bot/richmenu/{richMenuId}/content");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://api-data.line.me/v2/bot/richmenu/{richMenuId}/content");
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
             return new ContentStream(await response.Content.ReadAsStreamAsync(), response.Content.Headers);
@@ -612,7 +612,7 @@ $@"{{
 
         protected async Task UploadRichMenuImageAsync(Stream stream, string richMenuId, string mediaType)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/richmenu/{richMenuId}/content")
+            var request = new HttpRequestMessage(HttpMethod.Post, $"https://api-data.line.me/v2/bot/richmenu/{richMenuId}/content")
             {
                 Content = new StreamContent(stream)
             };
