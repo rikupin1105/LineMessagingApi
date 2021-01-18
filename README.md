@@ -16,6 +16,13 @@ NuGet マネージャーなどでプロジェクトに参照可能です。
 [NuGet ギャラリー | Line.Messaging](https://www.nuget.org/packages/Line.Messaging.rikupin/)  
 
 # 利用方法
+### インストール
+```
+dotnet add package Line.Messaging.rikupin --version 1.4.6.3
+```
+```
+Install-Package Line.Messaging.rikupin -Version 1.4.6.3
+```
 以下の 3 ステップで SDK を利用します。
   - LineMessagingClient のインスタンス作成
   - WebhookApplication を継承したクラスの作成
