@@ -161,6 +161,7 @@ namespace Line.Messaging
         /// <param name="groupId">Group ID</param>
         /// <returns></returns>
         Task LeaveFromGroupAsync(string groupId);
+        Task<GroupSummary> GetGroupSummary(string groupId);
 
         #endregion
 

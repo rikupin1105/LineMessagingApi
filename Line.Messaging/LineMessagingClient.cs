@@ -382,7 +382,16 @@ $@"{{
             var response = await _client.PostAsync($"{_uri}/bot/group/{groupId}/leave", null).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
         }
-
+        public virtual async Task<GroupSummary> GetGroupSummary(string groupId)
+        {
+            var content = await GetStringAsync($"{_uri}/bot/group/{groupId}/summary").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<GroupSummary>(content);
+        }
+        public virtual async Task<MemberCount> GetGroupMemberCount(string groupId)
+        {
+            var content = await GetStringAsync($"{_uri}/bot/group/{groupId}/members/count").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<MemberCount>(content);
+        }
         #endregion
 
         #region Room
