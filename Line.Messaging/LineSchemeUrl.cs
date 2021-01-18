@@ -8,59 +8,55 @@ namespace Line.Messaging
     /// </summary>
     public static class LineSchemeUrl
     {
-        private static readonly string camera = "line://nv/camera/";
-        private static readonly string cameraRollSingle = "line://nv/cameraRoll/single";
-        private static readonly string cameraRollMulti = "line://nv/cameraRoll/multi";
-        private static readonly string location = "line://nv/location";
-        private static readonly string tiP = "line://ti/p/{0}";
-        private static readonly string recommendOA = "line://nv/recommendOA/{0}";
-        private static readonly string homePublicMain = "line://home/public/main?id={0}";
-        private static readonly string homePublicProfile = "line://home/public/profile?id={0}";
-        private static readonly string homePublicPost = "line://home/public/post?id={0}&postId={1}";
-        private static readonly string msgText = "line://msg/text/{0}";
-        private static readonly string oaMessage = "line://oaMessage/{0}/?{1}";
-        private static readonly string profile = "line://nv/profile";
-        private static readonly string profileSetId = "line://nv/profileSetId";
-        private static readonly string chat = "line://nv/chat";
-        private static readonly string timeline = "line://nv/timeline";
-        private static readonly string more = "line://nv/more";
-        private static readonly string addFriends = "line://nv/addFriends";
-        private static readonly string officialAccounts = "line://nv/officialAccounts";
-        private static readonly string settings = "line://nv/settings";
-        private static readonly string settingsAccount = "line://nv/settings/account";
-        private static readonly string connectedApps = "line://nv/connectedApps";
-        private static readonly string connectedDevices = "line://nv/connectedDevices";
-        private static readonly string settingsPrivacy = "line://nv/settings/privacy";
-        private static readonly string settingsAddressBookSync = "line://nv/settings/addressBookSync";
-        private static readonly string settingsSticker = "line://nv/settings/sticker";
-        private static readonly string stickerShopMySticker = "line://nv/stickerShop/mySticker";
-        private static readonly string settingsThemeIos = "line://nv/themeSettingsMenu";
-        private static readonly string settingsThemeAndroid = "line://nv/settings/theme";
-        private static readonly string themeSettings = "line://nv/themeSettings";
-        private static readonly string notificationsServiceDetail = "line://nv/notificationServiceDetail";
-        private static readonly string settingsChatSettings = "line://nv/settings/chatSettings";
-        private static readonly string suggestSettings = "line://nv/suggestSettings";
-        private static readonly string settingsCallSettings = "line://nv/settings/callSettings";
-        private static readonly string settingsTimelineSettings = "line://nv/settings/timelineSettings";
-        private static readonly string shopStickerDetail = "line://shop/sticker/detail/{0}";
-        private static readonly string shopCategory = "line://shop/category/{0}";
-        private static readonly string shopStickerAuthor = "line://shop/sticker/author/{0}";
-        private static readonly string stickerShop = "line://nv/stickerShop";
-        private static readonly string shopStickerNew = "line://shop/sticker/new";
-        private static readonly string shopStikerHot = "line://shop/sticker/hot";
-        private static readonly string shopStickerEvent = "line://shop/sticker/event";
-        private static readonly string shopStickerCategory = "line://shop/sticker/category";
-        private static readonly string sSticker = "line://S/sticker/{0}";
-        private static readonly string sShopStickerAuthor = "line://S/shop/sticker/author/{0}";
-        private static readonly string shopThemeDetail = "line://shop/theme/detail?id={0}";
-        private static readonly string sShopThemeDetail = "line://S/shop/theme/detail?id={0}";
-        private static readonly string call = "line://call/{0}/{1}";
-        private static readonly string calls = "line://calls";
-        private static readonly string callDialpad = "line://call/dialpad";
-        private static readonly string callSettings = "line://call/settings";
-        private static readonly string callContacts = "line://call/contacts";
-        private static readonly string callSpot = "line://call/spot";
-        private static readonly string callRedeem = "line://call/redeem";
+        private static readonly string camera = "https://line.me/R/nv/camera/";
+        private static readonly string cameraRollSingle = "https://line.me/R/nv/cameraRoll/single";
+        private static readonly string cameraRollMulti = "https://line.me/R/nv/cameraRoll/multi";
+        private static readonly string location = "https://line.me/R/nv/location";
+        private static readonly string tiP = "https://line.me/R/ti/p/{0}";
+        private static readonly string recommendOA = "https://line.me/R/nv/recommendOA/{0}";
+        private static readonly string homePublicMain = "https://line.me/R/home/public/main?id={0}";
+        private static readonly string homePublicProfile = "https://line.me/R/home/public/profile?id={0}";
+        private static readonly string homePublicPost = "https://line.me/R/home/public/post?id={0}&postId={1}";
+        private static readonly string msgText = "https://line.me/R/msg/text/?{0}";
+        private static readonly string oaMessage = "https://line.me/R/oaMessage/{0}/?{1}";
+        private static readonly string profile = "https://line.me/R/nv/profile";
+        private static readonly string profileSetId = "https://line.me/R/nv/profileSetId";
+        private static readonly string chat = "https://line.me/R/nv/chat";
+        private static readonly string timeline = "https://line.me/R/nv/timeline";
+        private static readonly string more = "https://line.me/R/nv/more";
+        private static readonly string addFriends = "https://line.me/R/nv/addFriends";
+        private static readonly string officialAccounts = "https://line.me/R/nv/officialAccounts";
+        private static readonly string settings = "https://line.me/R/nv/settings";
+        private static readonly string settingsAccount = "https://line.me/R/nv/settings/account";
+        private static readonly string connectedApps = "https://line.me/R/nv/connectedApps";
+        private static readonly string connectedDevices = "https://line.me/R/nv/connectedDevices";
+        private static readonly string settingsPrivacy = "https://line.me/R/nv/settings/privacy";
+        private static readonly string thingsDevicesLink = "https://line.me/R/nv/things/deviceLink";
+        private static readonly string settingsSticker = "https://line.me/R/nv/settings/sticker";
+        private static readonly string stickerShopMySticker = "https://line.me/R/nv/stickerShop/mySticker";
+        private static readonly string settingsThemeIos = "https://line.me/R/nv/themeSettingsMenu";
+        private static readonly string settingsThemeAndroid = "https://line.me/R/nv/settings/theme";
+        private static readonly string themeSettings = "https://line.me/R/nv/themeSettings";
+        private static readonly string notificationsServiceDetail = "https://line.me/R/nv/notificationServiceDetail";
+        private static readonly string settingsChatSettings = "https://line.me/R/nv/settings/chatSettings";
+        private static readonly string suggestSettings = "https://line.me/R/nv/suggestSettings";
+        private static readonly string settingsCallSettings = "https://line.me/R/nv/settings/callSettings";
+        private static readonly string settingsAddressBookSync = "https://line.me/R/nv/settings/addressBookSync";
+        private static readonly string settingsTimelineSettings = "https://line.me/R/nv/settings/timelineSettings";
+        private static readonly string shopStickerDetail = "https://line.me/R/shop/sticker/detail/{0}";
+        private static readonly string shopCategory = "https://line.me/R/shop/category/{0}";
+        private static readonly string shopStickerAuthor = "https://line.me/R/shop/sticker/author/{0}";
+        private static readonly string stickerShop = "https://line.me/R/nv/stickerShop";
+        private static readonly string shopStikerHot = "https://line.me/R/shop/sticker/hot";
+        private static readonly string shopStickerNew = "https://line.me/R/shop/sticker/new";
+        private static readonly string shopStickerEvent = "https://line.me/R/shop/sticker/event";
+        private static readonly string shopStickerCategory = "https://line.me/R/shop/sticker/category";
+        private static readonly string call = "https://line.me/R/call/{0}/{1}";
+        private static readonly string calls = "https://line.me/R/calls";
+        private static readonly string callDialpad = "https://line.me/R/call/dialpad";
+        private static readonly string callSettings = "https://line.me/R/call/settings";
+        private static readonly string callContacts = "https://line.me/R/call/contacts";
+        private static readonly string callRedeem = "https://line.me/R/call/redeem";
 
         /// <summary>
         /// Opens the camera screen.
@@ -127,7 +123,7 @@ namespace Line.Messaging
         /// Friend of bot: Opens the chat with the bot.</para><para>
         /// Not a friend or blocked by user: Opens the "Add friend" screen for your bot.</para>
         /// </summary>
-        /// <para>Line://ti/p/{LINE_Id}</para>
+        /// <para>https://ti/p/{LINE_Id}</para>
         /// <param name="lineId">
         /// Find the LINE ID of your bot on the LINE@ Manager. Make sure you include the "@" symbol in the LINE ID.
         /// </param>
@@ -630,13 +626,13 @@ namespace Line.Messaging
             => new UriTemplateAction(label, GetShopStickerAuthorUrl(authorId));
 
         /// <summary>
-        /// Opens the "HOME" tab in the "Sticker Shop" screen.
+        /// Opens the               "HOME" tab in the "Sticker Shop" screen.
         /// </summary>
         /// <returns>String of LINE scheme URL</returns>
         public static string GetStickerShopUrl() => stickerShop;
 
         /// <summary>
-        /// Opens the "HOME" tab in the "Sticker Shop" screen.
+        /// Opens the               "HOME" tab in the "Sticker Shop" screen.
         /// </summary>
         /// <param name = "label" > Template action label text</param>
         /// <returns>URI template action object</returns>
@@ -695,86 +691,10 @@ namespace Line.Messaging
         public static UriTemplateAction GetShopStickerCategoryUriTemplateAction(string label) => new UriTemplateAction(label, GetShopStickerCategoryUrl());
 
         /// <summary>
-        /// Opens the "Sticker set info" screen for a specified creators' sticker set. 
-        /// </summary>
-        /// <param name="packageId">
-        /// Find the "package ID" in the URL of sticker set pages in the "Creators' stickers" section of the LINE STORE.
-        /// </param>
-        /// <returns>String of LINE scheme URL</returns>
-        public static string GetSStickerUrl(string packageId) => string.Format(sSticker, packageId);
-
-        /// <summary>
-        /// Opens the "Sticker set info" screen for a specified creators' sticker set. 
-        /// </summary>
-        /// <param name="packageId">
-        /// Find the "package ID" in the URL of sticker set pages in the "Creators' stickers" section of the LINE STORE.
-        /// </param>
-        /// <param name = "label" > Template action label text</param>
-        /// <returns>URI template action object</returns>
-        public static UriTemplateAction GetSStickerUriTemplateAction(string label, string packageId)
-            => new UriTemplateAction(label, GetSStickerUrl(packageId));
-
-        /// <summary>
-        /// Opens a list of creators' sticker sets from a specified author. 
-        /// </summary>
-        /// <param name="authorId">
-        /// Find the "author ID" in the URL of author pages in the "Creators' stickers" section of the LINE STORE.
-        /// </param>
-        /// <returns>String of LINE scheme URL</returns>
-        public static string GetSShopStickerAuthorUrl(string authorId) => string.Format(sShopStickerAuthor, authorId);
-
-        /// <summary>
-        /// Opens a list of creators' sticker sets from a specified author. 
-        /// </summary>
-        /// <param name="authorId">
-        /// Find the "author ID" in the URL of author pages in the "Creators' stickers" section of the LINE STORE.
-        /// </param>
-        /// <param name = "label" > Template action label text</param>
-        /// <returns>URI template action object</returns>
-        public static UriTemplateAction GetSShopStickerAuthorUriTemplateAction(string label, string authorId)
-            => new UriTemplateAction(label, GetSShopStickerAuthorUrl(authorId));
-
-        /// <summary>
-        /// Opens the "Theme info" screen for a specified official theme in the Theme Shop. 
-        /// </summary>
-        /// <param name="productId">
-        /// Find the "product ID" in the URL of the theme page in the "Official themes" section of the LINE STORE.
-        /// </param>
-        /// <returns>String of LINE scheme URL</returns>
-        public static string GetShopThemeDetailUrl(string productId) => string.Format(shopThemeDetail, productId);
-
-        /// <summary>
-        /// Opens the "Theme info" screen for a specified official theme in the Theme Shop. 
-        /// </summary>
-        /// <param name="productId">
-        /// Find the "product ID" in the URL of the theme page in the "Official themes" section of the LINE STORE.
-        /// </param>
-        /// <param name = "label" > Template action label text</param>
-        /// <returns>URI template action object</returns>
-        public static UriTemplateAction ShopThemeDetailUriTemplateAction(string label, string productId)
-            => new UriTemplateAction(label, GetShopThemeDetailUrl(productId));
-
-        /// <summary>
-        /// Opens the "Theme info" screen for a specified creators' theme in the Theme Shop. 
-        /// </summary>
-        /// <param name="productId"></param>
-        /// <returns>String of LINE scheme URL</returns>
-        public static string GetSShopThemeDetailUrl(string productId) => string.Format(sShopThemeDetail, productId);
-
-        /// <summary>
-        /// Opens the "Theme info" screen for a specified creators' theme in the Theme Shop. 
-        /// </summary>
-        /// <param name="productId"></param>
-        /// <param name = "label" > Template action label text</param>
-        /// <returns>URI template action object</returns>
-        public static UriTemplateAction GetSShopThemeDetailUriTemplateAction(string label, string productId)
-            => new UriTemplateAction(label, GetSShopThemeDetailUrl(productId));
-
-        /// <summary>
         /// Opens the "LINE Out" dial pad screen with a preset phone number. 
         /// </summary>
         /// <para>
-        /// For example, line://call/81/1022223333 sets the country calling code to "+81" and the local phone number to "1022223333".
+        /// For example, https://call/81/1022223333 sets the country calling code to "+81" and the local phone number to "1022223333".
         /// </para>
         /// <param name="countryCallingCode">
         /// Specify the country calling code and the phone number as path parameters. Do not include the "+" symbol in the URL. 
@@ -789,7 +709,7 @@ namespace Line.Messaging
         /// Opens the "LINE Out" dial pad screen with a preset phone number. 
         /// </summary>
         /// <para>
-        /// For example, line://call/81/1022223333 sets the country calling code to "+81" and the local phone number to "1022223333".
+        /// For example, https://call/81/1022223333 sets the country calling code to "+81" and the local phone number to "1022223333".
         /// </para>
         /// <param name="countryCallingCode">
         /// Specify the country calling code and the phone number as path parameters. Do not include the "+" symbol in the URL. 
@@ -854,25 +774,6 @@ namespace Line.Messaging
         /// <param name = "label" > Template action label text</param>
         /// <returns>URI template action object</returns>
         public static UriTemplateAction GetCallContactsUriTemplateAction(string label) => new UriTemplateAction(label, GetCallContactsUrl());
-
-        /// <summary>
-        /// Opens the "Spots" screen. The "Spots" screen displays a map where users can search for information on nearby landmarks.
-        /// </summary>
-        /// <para>
-        /// Not supported on Android.
-        /// </para>
-        /// <returns>String of LINE scheme URL</returns>
-        public static string GetCallSpotUrl() => callSpot;
-
-        /// <summary>
-        /// Opens the "Spots" screen. The "Spots" screen displays a map where users can search for information on nearby landmarks.
-        /// </summary>
-        /// <para>
-        /// Not supported on Android.
-        /// </para>
-        /// <param name = "label" > Template action label text</param>
-        /// <returns>URI template action object</returns>
-        public static UriTemplateAction GetCallSpotUriTemplateAction(string label) => new UriTemplateAction(label, GetCallSpotUrl());
 
         /// <summary>
         /// Opens the "Redeem for LINE Out Credit" screen.

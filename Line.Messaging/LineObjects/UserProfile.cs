@@ -17,6 +17,11 @@
         public string UserId { get; set; }
 
         /// <summary>
+        /// Language
+        /// </summary>
+        public string language { get; set; }
+
+        /// <summary>
         /// Image URL
         /// </summary>
         public string PictureUrl { get; set; }

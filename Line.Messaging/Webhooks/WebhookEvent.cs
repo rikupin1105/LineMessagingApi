@@ -15,6 +15,11 @@ namespace Line.Messaging.Webhooks
         public WebhookEventType Type { get; }
 
         /// <summary>
+        /// channel status
+        /// </summary>
+        public string Mode { get; }
+
+        /// <summary>
         /// JSON object which contains the source of the event
         /// </summary>
         public WebhookEventSource Source { get; }
@@ -24,11 +29,12 @@ namespace Line.Messaging.Webhooks
         /// </summary>
         public long Timestamp { get; }
 
-        public WebhookEvent(WebhookEventType type, WebhookEventSource source, long timestamp)
+        public WebhookEvent(WebhookEventType type, WebhookEventSource source, long timestamp,string mode)
         {
             Type = type;
             Source = source;
             Timestamp = timestamp;
+            Mode = mode;
         }
 
         internal static WebhookEvent CreateFrom(dynamic dynamicObject)

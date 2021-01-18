@@ -108,18 +108,19 @@ namespace Line.Messaging
         #endregion
 
         #region Message 
-        // https://developers.line.me/en/docs/messaging-api/reference/#message
+        // https://developers.line.biz/ja/reference/messaging-api/#messages
 
         /// <summary>
         /// Respond to events from users, groups, and rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        public virtual async Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages)
+        /// <param name="notificationDisabled">True:The user is not notified. False:The user is notified. Default:Flase</param>
+        public virtual async Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/reply");
-            var content = JsonConvert.SerializeObject(new { replyToken, messages }, _jsonSerializerSettings);
+            var content = JsonConvert.SerializeObject(new { replyToken, messages, notificationDisabled }, _jsonSerializerSettings);
             request.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
             var response = await _client.SendAsync(request).ConfigureAwait(false);
@@ -128,28 +129,29 @@ namespace Line.Messaging
 
         /// <summary>
         /// Respond to events from users, groups, and rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply Text messages. Up to 5 messages.</param>
-        public virtual Task ReplyMessageAsync(string replyToken, params string[] messages)
+        public virtual Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
         {
-            return ReplyMessageAsync(replyToken, messages.Select(msg => new TextMessage(msg)).ToArray());
+            return ReplyMessageAsync(replyToken, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
         }
 
         /// <summary>
         /// Respond to events from users, groups, and rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Set reply messages with Json string.</param>
-        public virtual async Task ReplyMessageWithJsonAsync(string replyToken, params string[] messages)
+        public virtual async Task ReplyMessageWithJsonAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/reply");
             var json =
 $@"{{ 
     ""replyToken"" : ""{replyToken}"", 
-    ""messages"" : [{string.Join(", ", messages)}]
+    ""messages"" : [{string.Join(", ", messages)}],
+    ""notificationDisabled"" : {notificationDisabled}
 }}";
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -163,10 +165,10 @@ $@"{{
         /// </summary>
         /// <param name="to">ID of the receiver</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        public virtual async Task PushMessageAsync(string to, IList<ISendMessage> messages)
+        public virtual async Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/push");
-            var content = JsonConvert.SerializeObject(new { to, messages }, _jsonSerializerSettings);
+            var content = JsonConvert.SerializeObject(new { to, messages, notificationDisabled }, _jsonSerializerSettings);
             request.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
             var response = await _client.SendAsync(request).ConfigureAwait(false);
@@ -179,13 +181,14 @@ $@"{{
         /// </summary>
         /// <param name="to">ID of the receiver</param>
         /// <param name="messages">Set reply messages with Json string.</param>
-        public virtual async Task PushMessageWithJsonAsync(string to, params string[] messages)
+        public virtual async Task PushMessageWithJsonAsync(string to, bool notificationDisabled = false, params string[] messages)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/push");
             var json =
 $@"{{ 
     ""to"" : ""{to}"", 
-    ""messages"" : [{string.Join(", ", messages)}]
+    ""messages"" : [{string.Join(", ", messages)}],
+    ""notificationDisabled"" : {notificationDisabled}
 }}";
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -200,9 +203,9 @@ $@"{{
         /// </summary>
         /// <param name="to">ID of the receiver</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
-        public virtual Task PushMessageAsync(string to, params string[] messages)
+        public virtual Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages)
         {
-            return PushMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray());
+            return PushMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
         }
 
         /// <summary>
@@ -212,10 +215,10 @@ $@"{{
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 150 users</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        public virtual async Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages)
+        public virtual async Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/multicast");
-            var content = JsonConvert.SerializeObject(new { to, messages }, _jsonSerializerSettings);
+            var content = JsonConvert.SerializeObject(new { to, messages, notificationDisabled }, _jsonSerializerSettings);
             request.Content = new StringContent(content, Encoding.UTF8, "application/json");
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
@@ -228,13 +231,14 @@ $@"{{
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 150 users</param>
         /// <param name="messages">Set reply messages with Json string.</param>
-        public virtual async Task MultiCastMessageWithJsonAsync(IList<string> to, params string[] messages)
+        public virtual async Task MultiCastMessageWithJsonAsync(IList<string> to, bool notificationDisabled = false, params string[] messages)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/multicast");
             var json =
 $@"{{ 
     ""to"" : [{string.Join(", ", to.Select(x => "\"" + x + "\""))}], 
     ""messages"" : [{string.Join(", ", messages)}] 
+    ""notificationDisabled"" : {notificationDisabled}
 }}";
 
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -249,9 +253,9 @@ $@"{{
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 150 users</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
-        public virtual Task MultiCastMessageAsync(IList<string> to, params string[] messages)
+        public virtual Task MultiCastMessageAsync(IList<string> to, bool notificationDisabled = false, params string[] messages)
         {
-            return MultiCastMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray());
+            return MultiCastMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray(),notificationDisabled);
         }
 
 
@@ -593,8 +597,10 @@ $@"{{
 
         protected async Task UploadRichMenuImageAsync(Stream stream, string richMenuId, string mediaType)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/richmenu/{richMenuId}/content");
-            request.Content = new StreamContent(stream);
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/richmenu/{richMenuId}/content")
+            {
+                Content = new StreamContent(stream)
+            };
             request.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
@@ -633,7 +639,7 @@ $@"{{
 
         /// <summary>
         /// Issues a link token used for the account link feature.
-        /// <para>https://developers.line.me/en/docs/messaging-api/linking-accounts</para>
+        /// <para>https://developers.line.biz/ja/reference/messaging-api/#account-link</para>
         /// </summary>
         /// <param name="userId">
         /// User ID for the LINE account to be linked. Found in the source object of account link event objects. Do not use the LINE ID used in the LINE app.
@@ -709,7 +715,7 @@ $@"{{
         }
 
         #endregion
-        
+
         public void Dispose()
         {
             _client?.Dispose();

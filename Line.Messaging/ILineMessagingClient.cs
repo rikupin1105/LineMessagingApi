@@ -19,7 +19,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages);
+        Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
         /// Respond to events from users, groups, and rooms
@@ -27,7 +27,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply Text messages. Up to 5 messages.</param>
-        Task ReplyMessageAsync(string replyToken, params string[] messages);
+        Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// Respond to events from users, groups, and rooms
@@ -35,7 +35,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Set reply messages with Json string.</param>
-        Task ReplyMessageWithJsonAsync(string replyToken, params string[] messages);
+        Task ReplyMessageWithJsonAsync(string replyToken, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// Send messages to a user, group, or room at any time.
@@ -43,7 +43,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="to">ID of the receiver</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        Task PushMessageAsync(string to, IList<ISendMessage> messages);
+        Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
         /// Send messages to a user, group, or room at any time.
@@ -51,7 +51,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="to">ID of the receiver</param>
         /// <param name="messages">Set reply messages with Json string.</param>
-        Task PushMessageWithJsonAsync(string to, params string[] messages);
+        Task PushMessageWithJsonAsync(string to, bool notificationDisabled = false, params string[] messages);
 
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="to">ID of the receiver</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
-        Task PushMessageAsync(string to, params string[] messages);
+        Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// Send push messages to multiple users at any time.
@@ -69,7 +69,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 150 users</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages);
+        Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
         /// Send push messages to multiple users at any time.
@@ -78,7 +78,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 150 users</param>
         /// <param name="messages">Set reply messages with Json string.</param>
-        Task MultiCastMessageWithJsonAsync(IList<string> to, params string[] messages);
+        Task MultiCastMessageWithJsonAsync(IList<string> to, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// Send push text messages to multiple users at any time.
@@ -87,7 +87,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 150 users</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
-        Task MultiCastMessageAsync(IList<string> to, params string[] messages);
+        Task MultiCastMessageAsync(IList<string> to, bool notificationDisabled = false, params string[] messages);
 
 
         /// <summary>
