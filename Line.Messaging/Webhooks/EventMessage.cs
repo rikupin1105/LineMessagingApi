@@ -34,7 +34,7 @@ namespace Line.Messaging.Webhooks
             switch (messageType)
             {
                 case EventMessageType.Text:
-                    return new TextEventMessage((string)message.id, (string)message.text);
+                    return new TextEventMessage((string)message.id, (string)message.text,(Emoji[])message.emojis);
                 case EventMessageType.Image:
                 case EventMessageType.Audio:
                 case EventMessageType.Video:

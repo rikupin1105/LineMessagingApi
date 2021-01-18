@@ -6,10 +6,12 @@
     public class TextEventMessage : EventMessage
     {
         public string Text { get; }
+        public Emoji[] Emojis { get; set; }
 
-        public TextEventMessage(string id, string text) : base(EventMessageType.Text, id)
+        public TextEventMessage(string id, string text, Emoji[] emojis) : base(EventMessageType.Text, id)
         {
             Text = text;
+            Emojis = emojis;
         }
     }
 }
