@@ -3,7 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Line.Messaging.rikupin.svg)](https://www.nuget.org/packages/Line.Messaging.rikupin)
 [![NuGet](https://img.shields.io/nuget/dt/Line.Messaging.rikupin.svg)](https://www.nuget.org/packages/Line.Messaging.rikupin)
 
-[LINE Messaging API](https://developers.line.me/messaging-api/overview) の C# 用 SDK 実装です。
+[LINE Messaging API](https://developers.line.biz/ja/services/messaging-api/) の C# 用 SDK 実装です。
 [こちら](https://github.com/pierre3/LineMessagingApi)を勝手に引き継いだバージョンです。
 自分に必要な機能を実装しているので、最新のAPIとは差があります。Issue PR は歓迎です。
 
