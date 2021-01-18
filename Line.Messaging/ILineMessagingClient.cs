@@ -162,6 +162,7 @@ namespace Line.Messaging
         /// <returns></returns>
         Task LeaveFromGroupAsync(string groupId);
         Task<GroupSummary> GetGroupSummary(string groupId);
+        Task<MemberCount> GetGroupMemberCount(string groupid);
 
         #endregion
 
@@ -202,6 +203,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="roomId">Room ID</param>
         Task LeaveFromRoomAsync(string roomId);
+        Task<MemberCount> GetRoomMemberCount(string roomId);
 
         #endregion
 

@@ -467,6 +467,12 @@ $@"{{
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
         }
 
+        public virtual async Task<MemberCount> GetRoomMemberCount(string roomId)
+        {
+            var content = await GetStringAsync($"{_uri}/bot/room/{roomId}/members/count").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<MemberCount>(content);
+        }
+
         #endregion
 
         #region Rich menu
