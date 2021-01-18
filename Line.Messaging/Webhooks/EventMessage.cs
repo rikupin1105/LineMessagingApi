@@ -50,7 +50,7 @@ namespace Line.Messaging.Webhooks
                     return new LocationEventMessage((string)message.id, (string)message.title, (string)message.address,
                         (decimal)message.latitude, (decimal)message.longitude);
                 case EventMessageType.Sticker:
-                    return new StickerEventMessage((string)message.id, (string)message.packageId, (string)message.stickerId,(string[])message.keywords,(string)message.stickerResourceType);
+                    return new StickerEventMessage((string)message.id, (string)message.packageId, (string)message.stickerId,(string[])message.keywords,(StickerResourceType)message.stickerResourceType);
                 case EventMessageType.File:
                     return new FileEventMessage((string)message.id, (string)message.fileName, (long)message.fileSize);
                 default:

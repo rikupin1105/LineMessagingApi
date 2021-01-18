@@ -8,10 +8,10 @@
         public string PackageId { get; }
 
         public string StickerId { get; }
+        public StickerResourceType StickerResourceType { get; }
         public string[] Keywords { get; }
-        public string StickerResourceType { get; }
 
-        public StickerEventMessage(string id, string packageId, string stickerId,string[] keywords,string stickerResourceType) : base(EventMessageType.Sticker, id)
+        public StickerEventMessage(string id, string packageId, string stickerId,string[] keywords, StickerResourceType stickerResourceType) : base(EventMessageType.Sticker, id)
         {
             PackageId = packageId;
             StickerId = stickerId;
