@@ -10,8 +10,8 @@
         /// </summary>
         public EventMessage Message { get; }
 
-        public MessageEvent(WebhookEventSource source, long timestamp, EventMessage message, string replyToken)
-            : base(WebhookEventType.Message, source, timestamp, replyToken)
+        public MessageEvent(WebhookEventSource source, long timestamp, EventMessage message, string replyToken, string mode)
+            : base(WebhookEventType.Message, source, timestamp, replyToken, mode)
         {
             Message = message;
         }

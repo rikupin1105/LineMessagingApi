@@ -7,8 +7,8 @@
     /// </summary>
     public class LeaveEvent : WebhookEvent
     {
-        public LeaveEvent(WebhookEventSource source, long timestamp)
-            : base(WebhookEventType.Leave, source, timestamp)
+        public LeaveEvent(WebhookEventSource source, long timestamp, string mode)
+            : base(WebhookEventType.Leave, source, timestamp,mode)
         {
         }
     }

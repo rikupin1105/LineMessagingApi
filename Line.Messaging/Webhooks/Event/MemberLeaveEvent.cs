@@ -12,8 +12,8 @@ namespace Line.Messaging.Webhooks
         /// </summary>
         public Moved Left { get; }
 
-        public MemberLeaveEvent(WebhookEventSource source, long timestamp, IList<WebhookEventSource> members)
-            : base(WebhookEventType.MemberLeft, source, timestamp)
+        public MemberLeaveEvent(WebhookEventSource source, long timestamp, IList<WebhookEventSource> members,string mode)
+            : base(WebhookEventType.MemberLeft, source, timestamp,mode)
         {
             Left = new Moved(members);
         }

@@ -5,7 +5,7 @@ namespace Line.Messaging.Webhooks
 {
     /// <summary>
     /// The webhook event generated on the LINE Platform.
-    /// https://developers.line.me/en/docs/messaging-api/reference/#webhook-event-objects
+    /// https://developers.line.biz/ja/reference/messaging-api/#common-properties
     /// </summary>
     public abstract class WebhookEvent
     {
@@ -20,15 +20,14 @@ namespace Line.Messaging.Webhooks
         public string Mode { get; }
 
         /// <summary>
-        /// JSON object which contains the source of the event
-        /// </summary>
-        public WebhookEventSource Source { get; }
-
-        /// <summary>
         /// Time of the event in milliseconds
         /// </summary>
         public long Timestamp { get; }
 
+        /// <summary>
+        /// JSON object which contains the source of the event
+        /// </summary>
+        public WebhookEventSource Source { get; }
         public WebhookEvent(WebhookEventType type, WebhookEventSource source, long timestamp,string mode)
         {
             Type = type;
@@ -57,36 +56,36 @@ namespace Line.Messaging.Webhooks
                 case WebhookEventType.Message:
                     EventMessage eventMessage = EventMessage.CreateFrom(dynamicObject);
                     if (eventMessage == null) { return null; }
-                    return new MessageEvent(eventSource, (long)dynamicObject.timestamp, eventMessage, (string)dynamicObject.replyToken);
+                    return new MessageEvent(eventSource, (long)dynamicObject.timestamp, eventMessage, (string)dynamicObject.replyToken, (string)dynamicObject.mode);
                 case WebhookEventType.Follow:
-                    return new FollowEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken);
+                    return new FollowEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, (string)dynamicObject.mode);
                 case WebhookEventType.Unfollow:
-                    return new UnfollowEvent(eventSource, (long)dynamicObject.timestamp);
+                    return new UnfollowEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.mode);
                 case WebhookEventType.Join:
-                    return new JoinEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken);
+                    return new JoinEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken,(string)dynamicObject.mode);
                 case WebhookEventType.Leave:
-                    return new LeaveEvent(eventSource, (long)dynamicObject.timestamp);
+                    return new LeaveEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.mode);
                 case WebhookEventType.Postback:
                     var postback = new Postback(
                         (string)dynamicObject.postback?.data,
                         (string)dynamicObject.postback?.@params?.date,
                         (string)dynamicObject.postback?.@params?.time,
                         (string)dynamicObject.postback?.@params?.datetime);
-                    return new PostbackEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, postback);
+                    return new PostbackEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, postback, (string)dynamicObject.mode);
                 case WebhookEventType.Beacon:
                     if (!Enum.TryParse((string)dynamicObject.beacon.type, true, out BeaconType beaconType))
                     {
                         return null;
                     }
                     return new BeaconEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken,
-                        (string)dynamicObject.beacon.hwid, beaconType, (string)dynamicObject.beacon.dm);
+                        (string)dynamicObject.beacon.hwid, beaconType, (string)dynamicObject.beacon.dm, (string)dynamicObject.mode);
                 case WebhookEventType.AccountLink:
                     var link = new Link((string)dynamicObject.link?.result, (string)dynamicObject.link?.nonce);
-                    return new AccountLinkEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, link);
+                    return new AccountLinkEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, link, (string)dynamicObject.mode);
                 case WebhookEventType.Things:
                     var thingsType = (ThingsType)Enum.Parse(typeof(ThingsType), (string)dynamicObject.things?.type, true);
                     var things = new Things((string)dynamicObject.things?.deviceId, thingsType);
-                    return DeviceEvent.Create(eventSource, (long)dynamicObject.timestamp, things);
+                    return DeviceEvent.Create(eventSource, (long)dynamicObject.timestamp, things, (string)dynamicObject.mode);
                 case WebhookEventType.MemberJoined:
 
                     var joinedMembers = new List<WebhookEventSource>();
@@ -94,7 +93,7 @@ namespace Line.Messaging.Webhooks
                     {
                         joinedMembers.Add(WebhookEventSource.CreateFrom(member));
                     }
-                    return new MemberJoinEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, joinedMembers);
+                    return new MemberJoinEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, joinedMembers, (string)dynamicObject.mode);
 
                 case WebhookEventType.MemberLeft:
                     var leftMembers = new List<WebhookEventSource>();
@@ -102,7 +101,7 @@ namespace Line.Messaging.Webhooks
                     {
                         leftMembers.Add(WebhookEventSource.CreateFrom(member));
                     }
-                    return new MemberLeaveEvent(eventSource, (long)dynamicObject.timestamp, leftMembers);
+                    return new MemberLeaveEvent(eventSource, (long)dynamicObject.timestamp, leftMembers, (string)dynamicObject.mode);
                 default:
                     return null;
             }

@@ -8,8 +8,8 @@
     {
         public Beacon Beacon { get; }
 
-        public BeaconEvent(WebhookEventSource source, long timestamp, string replyToken, string hwid, BeaconType beaconType, string dm)
-            : base(WebhookEventType.Beacon, source, timestamp, replyToken)
+        public BeaconEvent(WebhookEventSource source, long timestamp, string replyToken, string hwid, BeaconType beaconType, string dm,string mode)
+            : base(WebhookEventType.Beacon, source, timestamp, replyToken,mode)
         {
             Beacon = new Beacon(hwid, beaconType, dm);
         }

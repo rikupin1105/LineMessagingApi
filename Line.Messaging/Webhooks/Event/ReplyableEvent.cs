@@ -4,8 +4,8 @@
     {
         public string ReplyToken { get; }
 
-        public ReplyableEvent(WebhookEventType eventType, WebhookEventSource source, long timestamp, string replyToken)
-            : base(eventType, source, timestamp)
+        public ReplyableEvent(WebhookEventType eventType, WebhookEventSource source, long timestamp, string replyToken, string mode)
+            : base(eventType, source, timestamp, mode)
         {
             ReplyToken = replyToken;
         }

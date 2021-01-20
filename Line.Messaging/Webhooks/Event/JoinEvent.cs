@@ -5,8 +5,8 @@
     /// </summary>
     public class JoinEvent : ReplyableEvent
     {
-        public JoinEvent(WebhookEventSource source, long timestamp, string replyToken)
-            : base(WebhookEventType.Join, source, timestamp, replyToken)
+        public JoinEvent(WebhookEventSource source, long timestamp, string replyToken,string mode)
+            : base(WebhookEventType.Join, source, timestamp, replyToken,mode)
         {
         }
     }

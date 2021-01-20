@@ -12,8 +12,8 @@ namespace Line.Messaging.Webhooks
         /// </summary>
         public Moved Joined { get; }
 
-        public MemberJoinEvent(WebhookEventSource source, long timestamp, string replyToken, IList<WebhookEventSource> members)
-            : base(WebhookEventType.MemberJoined, source, timestamp, replyToken)
+        public MemberJoinEvent(WebhookEventSource source, long timestamp, string replyToken, IList<WebhookEventSource> members,string mode)
+            : base(WebhookEventType.MemberJoined, source, timestamp, replyToken,mode)
         {
             Joined = new Moved(members);
         }

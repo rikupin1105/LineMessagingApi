@@ -5,8 +5,8 @@
     /// </summary>
     public class UnfollowEvent : WebhookEvent
     {
-        public UnfollowEvent(WebhookEventSource source, long timestamp)
-            : base(WebhookEventType.Unfollow, source, timestamp)
+        public UnfollowEvent(WebhookEventSource source, long timestamp, string mode)
+            : base(WebhookEventType.Unfollow, source, timestamp, mode)
         {
         }
     }

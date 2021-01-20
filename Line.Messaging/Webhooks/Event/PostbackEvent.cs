@@ -10,8 +10,8 @@
         /// </summary>
         public Postback Postback { get; }
 
-        public PostbackEvent(WebhookEventSource source, long timestamp, string replyToken, Postback postback)
-            : base(WebhookEventType.Postback, source, timestamp, replyToken)
+        public PostbackEvent(WebhookEventSource source, long timestamp, string replyToken, Postback postback,string mode)
+            : base(WebhookEventType.Postback, source, timestamp, replyToken, mode)
         {
             Postback = postback;
         }
