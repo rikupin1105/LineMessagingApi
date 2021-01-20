@@ -4,7 +4,7 @@ namespace Line.Messaging
 {
     /// <summary>
     /// Provide URLs of the LINE URL scheme.
-    /// <para>https://developers.line.me/en/docs/messaging-api/using-line-url-scheme/</para> 
+    /// <para>https://developers.line.me/ja/docs/messaging-api/using-line-url-scheme/</para> 
     /// </summary>
     public static class LineSchemeUrl
     {
