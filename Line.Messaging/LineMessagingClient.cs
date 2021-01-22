@@ -337,15 +337,27 @@ $@"{{
         }
 
         /// <summary>
+        /// 送信済みのプッシュメッセージの数を取得する。
+        /// Get the number of push messages that have been sent.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-number-of-push-messages
+        /// </summary>
+        public virtual async Task<NumberOfMessages> GetNumberOfPushMessages(DateTime date)
+        {
+            var response = await GetStringAsync($"{_uri}/bot/message/delivery/push?date={date.ToString("yyyyMMdd")}");
+            return JsonConvert.DeserializeObject<NumberOfMessages>(response);
+        }
+
+        /// <summary>
         /// 送信済みの応答メッセージの数を取得する。
         /// Get the number of response messages that have been sent.
         /// https://developers.line.biz/ja/reference/messaging-api/#get-number-of-reply-messages
         /// </summary>
-        public virtual async Task<NumberOfReplyMessages> GetNumberOfReplyMessages(DateTime date)
+        public virtual async Task<NumberOfMessages> GetNumberOfReplyMessages(DateTime date)
         {
             var response = await GetStringAsync($"{_uri}/bot/message/delivery/reply?date={date.ToString("yyyyMMdd")}");
-            return JsonConvert.DeserializeObject<NumberOfReplyMessages>(response);
+            return JsonConvert.DeserializeObject<NumberOfMessages>(response);
         }
+
 
         #endregion
 
