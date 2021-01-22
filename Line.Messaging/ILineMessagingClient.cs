@@ -153,8 +153,14 @@ namespace Line.Messaging
         /// Get the number of response messages that have been sent.
         /// https://developers.line.biz/ja/reference/messaging-api/#get-number-of-reply-messages
         /// </summary>
-        Task<NumberOfReplyMessages> GetNumberOfReplyMessages(DateTime date);
+        Task<NumberOfMessages> GetNumberOfReplyMessages(DateTime date);
 
+        /// <summary>
+        /// 送信済みのプッシュメッセージの数を取得する。
+        /// Get the number of push messages that have been sent.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-number-of-push-messages
+        /// </summary>
+        Task<NumberOfMessages> GetNumberOfPushMessages(DateTime date);
 
         #endregion
 
