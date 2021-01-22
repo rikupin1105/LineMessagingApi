@@ -148,6 +148,14 @@ namespace Line.Messaging
         /// </summary>
         Task<Consumption> GetConsumption();
 
+        /// <summary>
+        /// 送信済みの応答メッセージの数を取得する。
+        /// Get the number of response messages that have been sent.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-number-of-reply-messages
+        /// </summary>
+        Task<NumberOfReplyMessages> GetNumberOfReplyMessages(DateTime date);
+
+
         #endregion
 
         #region Profile
