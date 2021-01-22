@@ -8,11 +8,11 @@
         /// <summary>
         /// Type
         /// </summary>
-        public string Type { get; set; }
+        public string Status { get; set; }
 
         /// <summary>
         /// Value
         /// </summary>
-        public int Value { get; set; }
+        public int Success { get; set; }
     }
 }
