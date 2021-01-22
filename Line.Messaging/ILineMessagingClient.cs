@@ -98,6 +98,25 @@ namespace Line.Messaging
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
         Task MultiCastMessageAsync(IList<string> to, bool notificationDisabled = false, params string[] messages);
 
+        /// <summary>
+        /// LINE公式アカウントと友だちになっているすべてのユーザーに、任意のタイミングでプッシュメッセージを送信します。
+        /// Send push messages to all users who are friends with your LINE official account at any given time.
+        /// /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
+        /// </summary>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        /// <param name="messages">Reply text messages. Up to 5 messages.</param>
+        Task BroadCastMessageAsync(IList<ISendMessage> messages, bool notificationDisabled = false);
+
+        /// <summary>
+        /// LINE公式アカウントと友だちになっているすべてのユーザーに、任意のタイミングでプッシュメッセージを送信します。
+        /// Send push messages to all users who are friends with your LINE official account at any given time.
+        /// /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
+        /// </summary>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        /// <param name="messages">Reply text messages. Up to 5 messages.</param>
+        Task BroadCastMessageAsync( bool notificationDisabled = false, params string[] messages);
+
+
 
         /// <summary>
         /// Retrieve image, video, and audio data sent by users as Stream
