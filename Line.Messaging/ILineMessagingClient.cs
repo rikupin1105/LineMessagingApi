@@ -134,6 +134,20 @@ namespace Line.Messaging
         /// <returns>Content as byte array</returns>
         Task<byte[]> GetContentBytesAsync(string messageId);
 
+        /// <summary>
+        /// 当月分の上限目安を取得します。
+        /// Get the upper limit guideline for the current month.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-quota
+        /// </summary>
+        Task<Quota> GetQuota();
+
+        /// <summary>
+        /// 当月に送信されたメッセージの数を取得します。
+        /// Gets the number of messages sent in the current month.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-consumption
+        /// </summary>
+        Task<Consumption> GetConsumption();
+
         #endregion
 
         #region Profile

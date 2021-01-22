@@ -314,6 +314,27 @@ $@"{{
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
             return await response.Content.ReadAsByteArrayAsync();
         }
+        /// <summary>
+        /// 当月分の上限目安を取得します。
+        /// Get the upper limit guideline for the current month.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-quota
+        /// </summary>
+        public virtual async Task<Quota> GetQuota()
+        {
+            var response = await GetStringAsync($"{_uri}/bot/message/quota");
+            return JsonConvert.DeserializeObject<Quota>(response);
+        }
+
+        /// <summary>
+        /// 当月に送信されたメッセージの数を取得します。
+        /// Gets the number of messages sent in the current month.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-consumption
+        /// </summary>
+        public virtual async Task<Consumption> GetConsumption()
+        {
+            var response = await GetStringAsync($"{_uri}/bot/message/quota/consumption");
+            return JsonConvert.DeserializeObject<Consumption>(response);
+        }
 
         #endregion
 
