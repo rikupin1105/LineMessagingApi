@@ -414,18 +414,12 @@ namespace Line.Messaging
         #region Account Link
 
         /// <summary>
-        /// Issues a link token used for the account link feature.
-        /// <para>https://developers.line.me/en/docs/messaging-api/linking-accounts</para>
+        /// 連携トークンを発行する
+        /// Issue a link token
+        /// https://developers.line.biz/ja/reference/messaging-api/#issue-link-token
         /// </summary>
         /// <param name="userId">
-        /// User ID for the LINE account to be linked. Found in the source object of account link event objects. Do not use the LINE ID used in the LINE app.
-        /// </param>
-        /// <returns>
-        /// Returns the status code 200 and a link token. Link tokens are valid for 10 minutes and can only be used once.
-        /// Note: The validity period may change without notice.
-        /// </returns>
         Task<string> IssueLinkTokenAsync(string userId);
-
         #endregion
     }
 }
