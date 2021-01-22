@@ -336,6 +336,17 @@ $@"{{
             return JsonConvert.DeserializeObject<Consumption>(response);
         }
 
+        /// <summary>
+        /// 送信済みの応答メッセージの数を取得する。
+        /// Get the number of response messages that have been sent.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-number-of-reply-messages
+        /// </summary>
+        public virtual async Task<NumberOfReplyMessages> GetNumberOfReplyMessages(DateTime date)
+        {
+            var response = await GetStringAsync($"{_uri}/bot/message/delivery/reply?date={date.ToString("yyyyMMdd")}");
+            return JsonConvert.DeserializeObject<NumberOfReplyMessages>(response);
+        }
+
         #endregion
 
         #region Profile
