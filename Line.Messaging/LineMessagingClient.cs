@@ -111,12 +111,13 @@ namespace Line.Messaging
         // https://developers.line.biz/ja/reference/messaging-api/#messages
 
         /// <summary>
-        /// Respond to events from users, groups, and rooms
+        /// 応答メッセージを送る。
+        /// Send response messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        /// <param name="notificationDisabled">True:The user is not notified. False:The user is notified. Default:Flase</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         public virtual async Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/reply");
@@ -128,22 +129,26 @@ namespace Line.Messaging
         }
 
         /// <summary>
-        /// Respond to events from users, groups, and rooms
+        /// 応答メッセージを送る。
+        /// Send response messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
-        /// <param name="messages">Reply Text messages. Up to 5 messages.</param>
+        /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         public virtual Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
         {
             return ReplyMessageAsync(replyToken, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
         }
 
         /// <summary>
-        /// Respond to events from users, groups, and rooms
+        /// 応答メッセージを送る。
+        /// Send response messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
+        /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         public virtual async Task ReplyMessageWithJsonAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/reply");
@@ -160,11 +165,13 @@ $@"{{
         }
 
         /// <summary>
-        /// Send messages to a user, group, or room at any time.
-        /// Note: Use of push messages are limited to certain plans.
+        /// プッシュメッセージを送る。
+        /// Send push messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
-        /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        /// <param name="messages">Set reply messages with Json string.</param>
         public virtual async Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/push");
@@ -176,10 +183,12 @@ $@"{{
         }
 
         /// <summary>
-        /// Send messages to a user, group, or room at any time.
-        /// Note: Use of push messages are limited to certain plans.
+        /// プッシュメッセージを送る。
+        /// Send push messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Set reply messages with Json string.</param>
         public virtual async Task PushMessageWithJsonAsync(string to, bool notificationDisabled = false, params string[] messages)
         {
@@ -198,23 +207,26 @@ $@"{{
 
 
         /// <summary>
-        /// Send text messages to a user, group, or room at any time.
-        /// Note: Use of push messages are limited to certain plans.
+        /// プッシュメッセージを送る。
+        /// Send push messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
-        /// <param name="messages">Reply text messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        /// <param name="messages">Set reply messages with Json string.</param>
         public virtual Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages)
         {
             return PushMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
         }
 
         /// <summary>
-        /// Send push messages to multiple users at any time.
-        /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
+        /// マルチキャストメッセージを送る。
+        /// Send multicast messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-message
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 500 users</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         public virtual async Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/multicast");
@@ -225,12 +237,13 @@ $@"{{
         }
 
         /// <summary>
-        /// Send push messages to multiple users at any time.
-        /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
+        /// マルチキャストメッセージを送る。
+        /// Send multicast messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-message
         /// </summary>
-        /// <param name="to">IDs of the receivers. Max: 150 users</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
+        /// <param name="to">IDs of the receivers. Max: 500 users</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        /// <param name="messages">Reply messages. Up to 5 messages.</param>
         public virtual async Task MultiCastMessageWithJsonAsync(IList<string> to, bool notificationDisabled = false, params string[] messages)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/multicast");
@@ -247,12 +260,13 @@ $@"{{
         }
 
         /// <summary>
-        /// Send push text messages to multiple users at any time.
-        /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
+        /// マルチキャストメッセージを送る。
+        /// Send multicast messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-message
         /// </summary>
-        /// <param name="to">IDs of the receivers. Max: 150 users</param>
-        /// <param name="messages">Reply text messages. Up to 5 messages.</param>
+        /// <param name="to">IDs of the receivers. Max: 500 users</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        /// <param name="messages">Reply messages. Up to 5 messages.</param>
         public virtual Task MultiCastMessageAsync(IList<string> to, bool notificationDisabled = false, params string[] messages)
         {
             return MultiCastMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
@@ -271,12 +285,12 @@ $@"{{
         }
 
         /// <summary>
-        /// LINE公式アカウントと友だちになっているすべてのユーザーに、任意のタイミングでプッシュメッセージを送信します。
-        /// Send push messages to all users who are friends with your LINE official account at any given time.
-        /// /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
+        /// ブロードキャストキャストメッセージを送る。
+        /// Send broadcast messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
         /// </summary>
-        /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         public virtual async Task BroadCastMessageAsync(IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/broadcast");
@@ -288,9 +302,9 @@ $@"{{
         }
 
         /// <summary>
-        /// LINE公式アカウントと友だちになっているすべてのユーザーに、任意のタイミングでプッシュメッセージを送信します。
-        /// Send push messages to all users who are friends with your LINE official account at any given time.
-        /// /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
+        /// ブロードキャストキャストメッセージを送る。
+        /// Send broadcast messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
         /// </summary>
         /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
@@ -300,8 +314,9 @@ $@"{{
         }
 
         /// <summary>
-        /// Retrieve image, video, and audio data sent by users as Stream
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-content
+        /// コンテンツを取得する
+        /// Retrieving contents
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-content
         /// </summary>
         /// <param name="messageId">Message ID</param>
         /// <returns>Content as ContentStream</returns>
@@ -314,11 +329,12 @@ $@"{{
         }
 
         /// <summary>
-        /// Retrieve image, video, and audio data sent by users as byte array
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-content
+        /// コンテンツを取得する
+        /// Retrieving contents
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-content
         /// </summary>
         /// <param name="messageId">Message ID</param>
-        /// <returns>Content as byte array</returns>
+        /// <returns>Content as ContentStream</returns>
         public virtual async Task<byte[]> GetContentBytesAsync(string messageId)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"https://api-data.line.me/v2/bot/message/{messageId}/content");
@@ -774,64 +790,6 @@ $@"{{
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
             var content = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeAnonymousType(content, new { linkToken = "" }).linkToken;
-        }
-
-        #endregion
-
-        #region Number of sent messages
-
-        /// <summary>
-        /// Gets the number of messages sent with the /bot/message/reply endpoint.
-        /// The number of messages retrieved by this operation does not include the number of messages sent from LINE@ Manager.
-        /// </summary>
-        /// <param name="date">
-        /// - Date the messages were sent
-        /// - Format: yyyyMMdd(Example: 20191231)
-        /// - Timezone: UTC+9
-        /// </param>
-        /// <returns>
-        /// <see cref="Line.Messaging.NumberOfSentMessages"/>
-        /// </returns>
-        public virtual async Task<NumberOfSentMessages> GetNumberOfSentReplyMessagesAsync(DateTime date)
-        {
-            var response = await GetStringAsync($"{_uri}/bot/message/delivery/reply?date={date.ToString("yyyyMMdd")}");
-            return JsonConvert.DeserializeObject<NumberOfSentMessages>(response);
-        }
-
-        /// <summary>
-        /// Gets the number of messages sent with the /bot/message/push endpoint.
-        /// The number of messages retrieved by this operation does not include the number of messages sent from LINE@ Manager.
-        ///</summary>
-        /// <param name="date">
-        /// - Date the messages were sent
-        /// - Format: yyyyMMdd(Example: 20191231)
-        /// - Timezone: UTC+9
-        /// </param>
-        /// <returns>
-        /// <see cref="Line.Messaging.NumberOfSentMessages"/>
-        /// </returns>
-        public virtual async Task<NumberOfSentMessages> GetNumberOfSentPushMessagesAsync(DateTime date)
-        {
-            var response = await GetStringAsync($"{_uri}/bot/message/delivery/push?date={date.ToString("yyyyMMdd")}");
-            return JsonConvert.DeserializeObject<NumberOfSentMessages>(response);
-        }
-
-        /// <summary>
-        /// Gets the number of messages sent with the /bot/message/push endpoint.
-        /// The number of messages retrieved by this operation does not include the number of messages sent from LINE@ Manager.
-        /// </summary>
-        /// <param name="date">
-        /// - Date the messages were sent
-        /// - Format: yyyyMMdd(Example: 20191231)
-        /// - Timezone: UTC+9
-        /// </param>
-        /// <returns>
-        /// <see cref="Line.Messaging.NumberOfSentMessages"/>
-        /// </returns>
-        public virtual async Task<NumberOfSentMessages> GetNumberOfSentMulticastMessagesAsync(DateTime date)
-        {
-            var response = await GetStringAsync($"{_uri}/bot/message/delivery/multicast?date={date.ToString("yyyyMMdd")}");
-            return JsonConvert.DeserializeObject<NumberOfSentMessages>(response);
         }
 
         #endregion
