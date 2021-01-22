@@ -255,7 +255,7 @@ $@"{{
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
         public virtual Task MultiCastMessageAsync(IList<string> to, bool notificationDisabled = false, params string[] messages)
         {
-            return MultiCastMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray(),notificationDisabled);
+            return MultiCastMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
         }
 
 
