@@ -15,84 +15,93 @@ namespace Line.Messaging
 
         /// <summary>
         /// Respond to events from users, groups, and rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
         /// Respond to events from users, groups, and rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply Text messages. Up to 5 messages.</param>
         Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// Respond to events from users, groups, and rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Set reply messages with Json string.</param>
         Task ReplyMessageWithJsonAsync(string replyToken, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// Send messages to a user, group, or room at any time.
-        /// Note: Use of push messages are limited to certain plans.
+        /// /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
         /// Send messages to a user, group, or room at any time.
-        /// Note: Use of push messages are limited to certain plans.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Set reply messages with Json string.</param>
         Task PushMessageWithJsonAsync(string to, bool notificationDisabled = false, params string[] messages);
 
 
         /// <summary>
         /// Send text messages to a user, group, or room at any time.
-        /// Note: Use of push messages are limited to certain plans.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
         Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// Send push messages to multiple users at any time.
         /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-message
         /// </summary>
-        /// <param name="to">IDs of the receivers. Max: 150 users</param>
+        /// <param name="to">IDs of the receivers. Max: 500 users</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
         /// Send push messages to multiple users at any time.
         /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-message
         /// </summary>
-        /// <param name="to">IDs of the receivers. Max: 150 users</param>
+        /// <param name="to">IDs of the receivers. Max: 500 users</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Set reply messages with Json string.</param>
         Task MultiCastMessageWithJsonAsync(IList<string> to, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// Send push text messages to multiple users at any time.
         /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
-        /// https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
         /// </summary>
-        /// <param name="to">IDs of the receivers. Max: 150 users</param>
+        /// <param name="to">IDs of the receivers. Max: 500 users</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
         Task MultiCastMessageAsync(IList<string> to, bool notificationDisabled = false, params string[] messages);
 
 
         /// <summary>
         /// Retrieve image, video, and audio data sent by users as Stream
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-content
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-content
         /// </summary>
         /// <param name="messageId">Message ID</param>
         /// <returns>Content as ContentStream</returns>
@@ -100,7 +109,7 @@ namespace Line.Messaging
 
         /// <summary>
         /// Retrieve image, video, and audio data sent by users as byte array
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-content
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-content
         /// </summary>
         /// <param name="messageId">Message ID</param>
         /// <returns>Content as byte array</returns>
@@ -112,7 +121,7 @@ namespace Line.Messaging
 
         /// <summary>
         /// Get user profile information.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-profile
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-profile
         /// </summary>
         /// <param name="userId">User ID</param>
         /// <returns></returns>
@@ -125,7 +134,7 @@ namespace Line.Messaging
         /// <summary>
         /// Gets the user profile of a member of a group that the bot is in. This includes user profiles of users who have not added the bot as a friend or have blocked the bot.
         /// Use the group ID and user ID returned in the source object of webhook event objects. Do not use the LINE ID used in the LINE app. 
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-group-member-profile
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-group-member-profile
         /// </summary>
         /// <param name="groupId">Identifier of the group</param>
         /// <param name="userId">Identifier of the user</param>
@@ -137,7 +146,7 @@ namespace Line.Messaging
         /// This feature is only available for LINE@ Approved accounts or official accounts.
         /// Use the group Id returned in the source object of webhook event objects. 
         /// Users who have not agreed to the Official Accounts Terms of Use are not included in memberIds. There is no fixed number of memberIds. 
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-group-member-user-ids
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-group-member-user-ids
         /// </summary>
         /// <param name="groupId">Identifier of the group</param>
         /// <param name="continuationToken">ContinuationToken</param>
@@ -156,7 +165,7 @@ namespace Line.Messaging
         /// <summary>
         /// Leave a group.
         /// Use the ID that is returned via webhook from the source group. 
-        /// https://developers.line.me/en/docs/messaging-api/reference/#leave-group
+        /// https://developers.line.biz/ja/reference/messaging-api/#leave-group
         /// </summary>
         /// <param name="groupId">Group ID</param>
         /// <returns></returns>
@@ -181,7 +190,7 @@ namespace Line.Messaging
         /// Gets the user IDs of the members of a room that the bot is in. This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
         /// Use the room ID returned in the source object of webhook event objects. 
         /// This feature is only available for LINE@ Approved accounts or official accounts.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-room-member-user-ids
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-room-member-user-ids
         /// </summary>
         /// <param name="roomId">Identifier of the room</param>
         /// <param name="continuationToken">ContinuationToken</param>
@@ -211,7 +220,7 @@ namespace Line.Messaging
 
         /// <summary>
         /// Gets a rich menu via a rich menu ID.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu
         /// </summary>
         /// <param name="richMenuId">ID of an uploaded rich menu</param>
         /// <returns>RichMenu</returns>
@@ -221,7 +230,7 @@ namespace Line.Messaging
         /// Creates a rich menu. 
         /// Note: You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed.You can create up to 10 rich menus for one bot.
         /// The rich menu represented as a rich menu object.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
+        /// https://developers.line.biz/ja/reference/messaging-api/#create-rich-menu
         /// </summary>
         /// <param name="richMenu">RichMenu</param>
         /// <returns>RichMenu Id</returns>
@@ -229,14 +238,14 @@ namespace Line.Messaging
 
         /// <summary>
         /// Deletes a rich menu.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
+        /// https://developers.line.biz/ja/reference/messaging-api/#delete-rich-menu
         /// </summary>
         /// <param name="richMenuId">RichMenu Id</param>
         Task DeleteRichMenuAsync(string richMenuId);
 
         /// <summary>
         /// Gets the ID of the rich menu linked to a user.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu-id-of-user
         /// </summary>
         /// <param name="userId">ID of the user</param>
         /// <returns>RichMenu Id</returns>
@@ -253,7 +262,7 @@ namespace Line.Messaging
         /// <summary>
         /// Links a rich menu to a user.
         /// Note: Only one rich menu can be linked to a user at one time.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-user
+        /// https://developers.line.biz/ja/reference/messaging-api/#link-rich-menu-to-user
         /// </summary>
         /// <param name="userId">ID of the user</param>
         /// <param name="richMenuId">ID of an uploaded rich menu</param>
@@ -262,7 +271,7 @@ namespace Line.Messaging
 
         /// <summary>
         /// Unlinks a rich menu from a user.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-from-user
+        /// https://developers.line.biz/ja/reference/messaging-api/#unlink-rich-menu-from-user
         /// </summary>
         /// <param name="userId">ID of the user</param>
         /// <returns></returns>
@@ -270,7 +279,7 @@ namespace Line.Messaging
 
         /// <summary>
         /// Downloads an image associated with a rich menu.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-image
+        /// https://developers.line.biz/ja/reference/messaging-api/#download-rich-menu-image
         /// </summary>
         /// <param name="richMenuId">RichMenu Id</param>
         /// <returns>Image as ContentStream</returns>
@@ -280,7 +289,7 @@ namespace Line.Messaging
         /// Uploads and attaches a jpeg image to a rich menu.
         /// Images must have one of the following resolutions: 2500x1686, 2500x843. 
         /// You cannot replace an image attached to a rich menu.To update your rich menu image, create a new rich menu object and upload another image.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+        /// https://developers.line.biz/ja/reference/messaging-api/#upload-rich-menu-image
         /// </summary>
         /// <param name="stream">Jpeg image for the rich menu</param>
         /// <param name="richMenuId">The ID of the rich menu to attach the image to.</param>
@@ -290,7 +299,7 @@ namespace Line.Messaging
         /// Uploads and attaches a png image to a rich menu.
         /// Images must have one of the following resolutions: 2500x1686, 2500x843. 
         /// You cannot replace an image attached to a rich menu.To update your rich menu image, create a new rich menu object and upload another image.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+        /// https://developers.line.biz/ja/reference/messaging-api/#upload-rich-menu-image
         /// </summary>
         /// <param name="stream">Png image for the rich menu</param>
         /// <param name="richMenuId">The ID of the rich menu to attach the image to.</param>
@@ -298,7 +307,7 @@ namespace Line.Messaging
 
         /// <summary>
         /// Gets a list of all uploaded rich menus.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu-list
         /// </summary>
         /// <returns>List of ResponseRichMenu</returns>
         Task<IList<ResponseRichMenu>> GetRichMenuListAsync();
