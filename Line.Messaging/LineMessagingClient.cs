@@ -274,6 +274,14 @@ $@"{{
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// LINE公式アカウントと友だちになっているすべてのユーザーに、任意のタイミングでプッシュメッセージを送信します。
+        /// Send push messages to all users who are friends with your LINE official account at any given time.
+        /// /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
+        /// </summary>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        /// <param name="messages">Reply text messages. Up to 5 messages.</param>
         public virtual Task BroadCastMessageAsync(bool notificationDisabled = false, params string[] messages)
         {
             return BroadCastMessageAsync(messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
