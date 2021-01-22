@@ -253,20 +253,20 @@ namespace Line.Messaging
 
         #region Room
 
-        /// <summary>
-        /// Gets the user profile of a member of a room that the bot is in. This includes user profiles of users who have not added the bot as a friend or have blocked the bot.
-        /// Use the room ID and user ID returned in the source object of webhook event objects. Do not use the LINE ID used in the LINE app
-        /// </summary>
-        /// <param name="roomId">Identifier of the room</param>
-        /// <param name="userId">Identifier of the user</param>
-        /// <returns></returns>
-        Task<UserProfile> GetRoomMemberProfileAsync(string roomId, string userId);
+        // https://developers.line.biz/ja/reference/messaging-api/#chat-room
 
         /// <summary>
-        /// Gets the user IDs of the members of a room that the bot is in. This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
-        /// Use the room ID returned in the source object of webhook event objects. 
-        /// This feature is only available for LINE@ Approved accounts or official accounts.
-        /// https://developers.line.biz/ja/reference/messaging-api/#get-room-member-user-ids
+        /// トークルームに参加しているユーザーの人数を取得する。
+        /// Get the number of users participating in a talk room.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-members-room-count
+        /// </summary>
+        /// <param name="userId"></param>
+        Task<MemberCount> GetRoomMemberCountAsync(string roomId);
+
+        /// <summary>
+        /// トークルームメンバーのユーザーIDを取得する
+        /// Get the user ID of the talk room member.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-members-room-count
         /// </summary>
         /// <param name="roomId">Identifier of the room</param>
         /// <param name="continuationToken">ContinuationToken</param>
@@ -274,21 +274,21 @@ namespace Line.Messaging
         Task<GroupMemberIds> GetRoomMemberIdsAsync(string roomId, string continuationToken = null);
 
         /// <summary>
-        /// Gets the user profiles of the members of a room that the bot is in. This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
-        /// Use the room ID returned in the source object of webhook event objects. 
-        /// This feature is only available for LINE@ Approved accounts or official accounts.
+        /// トークルームメンバーのプロフィール情報を取得する
+        /// Get the profile information of a talk room member.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-room-member-profile
         /// </summary>
         /// <param name="roomId">Identifier of the room</param>
         /// <returns>List of UserProfiles</returns>
-        Task<IList<UserProfile>> GetRoomMemberProfilesAsync(string roomId);
+        Task<UserProfile> GetRoomMemberProfilesAsync(string roomId, string userId);
 
         /// <summary>
-        /// Leave a room.
-        /// Use the ID that is returned via webhook from the source room. 
+        /// トークルームから退出する
+        /// Exit the talk room.
+        /// https://developers.line.biz/ja/reference/messaging-api/#leave-room
         /// </summary>
         /// <param name="roomId">Room ID</param>
         Task LeaveFromRoomAsync(string roomId);
-        Task<MemberCount> GetRoomMemberCount(string roomId);
 
         #endregion
 
