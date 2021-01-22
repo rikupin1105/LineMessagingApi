@@ -169,6 +169,13 @@ namespace Line.Messaging
         /// </summary>
         Task<NumberOfMessages> GetNumberOfMulticastMessages(DateTime date);
 
+        /// <summary>
+        /// 送信済みのブロードキャストメッセージの数を取得する。
+        /// Get the number of broadcast messages that have been sent.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-number-of-broadcast-messages
+        /// </summary>
+        Task<NumberOfMessages> GetNumberOfBroadcastMessages(DateTime date);
+
 
         #endregion
 
