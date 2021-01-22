@@ -259,6 +259,18 @@ $@"{{
         }
 
         /// <summary>
+        /// ナローキャストメッセージの進行状況を取得する
+        /// Get the progress of a narrowcast message.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-narrowcast-progress-status
+        /// </summary>
+        /// <param name="requestId"></param>
+        public virtual async Task<ProgressNarrowcast> GetProgressNarrowcastAsync(string requestId)
+        {
+            var response = await GetStringAsync($"{_uri}/bot/message/progress/narrowcast");
+            return JsonConvert.DeserializeObject<ProgressNarrowcast>(response);
+        }
+
+        /// <summary>
         /// LINE公式アカウントと友だちになっているすべてのユーザーに、任意のタイミングでプッシュメッセージを送信します。
         /// Send push messages to all users who are friends with your LINE official account at any given time.
         /// /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
