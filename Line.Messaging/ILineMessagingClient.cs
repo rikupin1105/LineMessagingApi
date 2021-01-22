@@ -14,7 +14,8 @@ namespace Line.Messaging
         #region Message 
 
         /// <summary>
-        /// Respond to events from users, groups, and rooms
+        /// 応答メッセージを送る。
+        /// Send response messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
@@ -23,7 +24,8 @@ namespace Line.Messaging
         Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
-        /// Respond to events from users, groups, and rooms
+        /// 応答メッセージを送る。
+        /// Send response messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
@@ -32,7 +34,8 @@ namespace Line.Messaging
         Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
-        /// Respond to events from users, groups, and rooms
+        /// 応答メッセージを送る。
+        /// Send response messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
@@ -41,7 +44,8 @@ namespace Line.Messaging
         Task ReplyMessageWithJsonAsync(string replyToken, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
-        /// Send messages to a user, group, or room at any time.
+        /// 応答メッセージを送る。
+        /// Send response messages.
         /// /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
@@ -50,7 +54,8 @@ namespace Line.Messaging
         Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
-        /// Send messages to a user, group, or room at any time.
+        /// プッシュメッセージを送る。
+        /// Send push messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
@@ -60,7 +65,8 @@ namespace Line.Messaging
 
 
         /// <summary>
-        /// Send text messages to a user, group, or room at any time.
+        /// プッシュメッセージを送る。
+        /// Send push messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
@@ -69,8 +75,8 @@ namespace Line.Messaging
         Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
-        /// Send push messages to multiple users at any time.
-        /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
+        /// マルチキャストメッセージを送る。
+        /// Send multicast messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-message
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 500 users</param>
@@ -79,8 +85,8 @@ namespace Line.Messaging
         Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
-        /// Send push messages to multiple users at any time.
-        /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
+        /// マルチキャストメッセージを送る。
+        /// Send multicast messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-message
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 500 users</param>
@@ -89,8 +95,8 @@ namespace Line.Messaging
         Task MultiCastMessageWithJsonAsync(IList<string> to, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
-        /// Send push text messages to multiple users at any time.
-        /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
+        /// マルチキャストメッセージを送る。
+        /// Send multicast messages.\
         /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
         /// </summary>
         /// <param name="to">IDs of the receivers. Max: 500 users</param>
@@ -99,27 +105,26 @@ namespace Line.Messaging
         Task MultiCastMessageAsync(IList<string> to, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
-        /// LINE公式アカウントと友だちになっているすべてのユーザーに、任意のタイミングでプッシュメッセージを送信します。
-        /// Send push messages to all users who are friends with your LINE official account at any given time.
-        /// /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
+        /// ブロードキャストキャストメッセージを送る。
+        /// Send broadcast messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
         /// </summary>
         /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
         Task BroadCastMessageAsync(IList<ISendMessage> messages, bool notificationDisabled = false);
 
         /// <summary>
-        /// LINE公式アカウントと友だちになっているすべてのユーザーに、任意のタイミングでプッシュメッセージを送信します。
-        /// Send push messages to all users who are friends with your LINE official account at any given time.
-        /// /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
+        /// ブロードキャストキャストメッセージを送る。
+        /// Send broadcast messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-multicast-messages
         /// </summary>
         /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
         Task BroadCastMessageAsync( bool notificationDisabled = false, params string[] messages);
 
-
-
         /// <summary>
-        /// Retrieve image, video, and audio data sent by users as Stream
+        /// コンテンツを取得する
+        /// Retrieving contents
         /// https://developers.line.biz/ja/reference/messaging-api/#get-content
         /// </summary>
         /// <param name="messageId">Message ID</param>
@@ -127,7 +132,8 @@ namespace Line.Messaging
         Task<ContentStream> GetContentStreamAsync(string messageId);
 
         /// <summary>
-        /// Retrieve image, video, and audio data sent by users as byte array
+        /// コンテンツを取得する
+        /// Retrieving contents
         /// https://developers.line.biz/ja/reference/messaging-api/#get-content
         /// </summary>
         /// <param name="messageId">Message ID</param>
@@ -390,52 +396,6 @@ namespace Line.Messaging
         /// Note: The validity period may change without notice.
         /// </returns>
         Task<string> IssueLinkTokenAsync(string userId);
-
-        #endregion
-
-        #region Number of sent messages
-
-        /// <summary>
-        /// Gets the number of messages sent with the /bot/message/reply endpoint.
-        /// The number of messages retrieved by this operation does not include the number of messages sent from LINE@ Manager.
-        /// </summary>
-        /// <param name="date">
-        /// - Date the messages were sent
-        /// - Format: yyyyMMdd(Example: 20191231)
-        /// - Timezone: UTC+9
-        /// </param>
-        /// <returns>
-        /// <see cref="Line.Messaging.NumberOfSentMessages"/>
-        /// </returns>
-        Task<NumberOfSentMessages> GetNumberOfSentReplyMessagesAsync(DateTime date);
-
-        /// <summary>
-        /// Gets the number of messages sent with the /bot/message/push endpoint.
-        /// The number of messages retrieved by this operation does not include the number of messages sent from LINE@ Manager.
-        ///</summary>
-        /// <param name="date">
-        /// - Date the messages were sent
-        /// - Format: yyyyMMdd(Example: 20191231)
-        /// - Timezone: UTC+9
-        /// </param>
-        /// <returns>
-        /// <see cref="Line.Messaging.NumberOfSentMessages"/>
-        /// </returns>
-        Task<NumberOfSentMessages> GetNumberOfSentPushMessagesAsync(DateTime date);
-
-        /// <summary>
-        /// Gets the number of messages sent with the /bot/message/push endpoint.
-        /// The number of messages retrieved by this operation does not include the number of messages sent from LINE@ Manager.
-        /// </summary>
-        /// <param name="date">
-        /// - Date the messages were sent
-        /// - Format: yyyyMMdd(Example: 20191231)
-        /// - Timezone: UTC+9
-        /// </param>
-        /// <returns>
-        /// <see cref="Line.Messaging.NumberOfSentMessages"/>
-        /// </returns>
-        Task<NumberOfSentMessages> GetNumberOfSentMulticastMessagesAsync(DateTime date);
 
         #endregion
     }
