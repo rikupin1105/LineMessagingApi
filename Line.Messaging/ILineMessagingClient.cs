@@ -205,6 +205,18 @@ namespace Line.Messaging
 
         #endregion
 
+        #region Bot
+        // // https://developers.line.biz/ja/reference/messaging-api/#group
+
+        /// <summary>
+        /// ボットの情報を取得する
+        /// Get information about the bot.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-bot-info
+        /// </summary>
+        /// <param name="groupId"></param>
+        public virtual async Task<GroupSummary> GetGroupSummary(string groupId);
+        #endregion
+
         #region Group
         // https://developers.line.biz/ja/reference/messaging-api/#group
 

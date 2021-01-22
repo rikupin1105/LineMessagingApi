@@ -427,6 +427,22 @@ $@"{{
 
         #endregion
 
+        #region Bot
+        // // https://developers.line.biz/ja/reference/messaging-api/#group
+
+        /// <summary>
+        /// ボットの情報を取得する
+        /// Get information about the bot.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-bot-info
+        /// </summary>
+        /// <param name="groupId"></param>
+        public virtual async Task<BotInfo> GetGroupSummary(string groupId)
+        {
+            var content = await GetStringAsync($"{_uri}/bot/info").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<BotInfo>(content);
+        }
+        #endregion
+
         #region Group
         // https://developers.line.biz/ja/reference/messaging-api/#group
 
