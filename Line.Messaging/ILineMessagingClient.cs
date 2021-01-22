@@ -162,6 +162,14 @@ namespace Line.Messaging
         /// </summary>
         Task<NumberOfMessages> GetNumberOfPushMessages(DateTime date);
 
+        /// <summary>
+        /// 送信済みのマルチキャストメッセージの数を取得する。
+        /// Get the number of multicast messages that have been sent.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-number-of-multicast-messages
+        /// </summary>
+        Task<NumberOfMessages> GetNumberOfMulticastMessages(DateTime date);
+
+
         #endregion
 
         #region Profile
