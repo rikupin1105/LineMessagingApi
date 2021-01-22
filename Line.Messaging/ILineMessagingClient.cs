@@ -206,48 +206,57 @@ namespace Line.Messaging
         #endregion
 
         #region Group
+        // https://developers.line.biz/ja/reference/messaging-api/#group
 
         /// <summary>
-        /// Gets the user profile of a member of a group that the bot is in. This includes user profiles of users who have not added the bot as a friend or have blocked the bot.
-        /// Use the group ID and user ID returned in the source object of webhook event objects. Do not use the LINE ID used in the LINE app. 
-        /// https://developers.line.biz/ja/reference/messaging-api/#get-group-member-profile
+        /// グループの概要を取得する
+        /// Get an overview of the group
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-group-summary
         /// </summary>
-        /// <param name="groupId">Identifier of the group</param>
-        /// <param name="userId">Identifier of the user</param>
-        /// <returns>User Profile</returns>
-        Task<UserProfile> GetGroupMemberProfileAsync(string groupId, string userId);
+        /// <param name="groupId"></param>
+        Task<GroupSummary> GetGroupSummary(string groupId);
 
         /// <summary>
-        /// Gets the user IDs of the members of a group that the bot is in. This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
-        /// This feature is only available for LINE@ Approved accounts or official accounts.
-        /// Use the group Id returned in the source object of webhook event objects. 
-        /// Users who have not agreed to the Official Accounts Terms of Use are not included in memberIds. There is no fixed number of memberIds. 
+        /// グループに参加しているユーザーの人数を取得する
+        /// Get the number of users participating in a group.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-members-group-count
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
+        Task<MemberCount> GetGroupMemberCount(string groupId);
+
+        /// <summary>
+        /// グループメンバーのユーザーIDを取得する
+        /// Get the user IDs of the group members.
         /// https://developers.line.biz/ja/reference/messaging-api/#get-group-member-user-ids
         /// </summary>
         /// <param name="groupId">Identifier of the group</param>
         /// <param name="continuationToken">ContinuationToken</param>
-        /// <returns>GroupMemberIds</returns>
         Task<GroupMemberIds> GetGroupMemberIdsAsync(string groupId, string continuationToken);
 
         /// <summary>
-        /// Gets the user profiles of the members of a group that the bot is in. This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
-        /// Use the group Id returned in the source object of webhook event objects. 
-        /// This feature is only available for LINE@ Approved accounts or official accounts
+        /// グループメンバーのプロフィール情報を取得する
+        /// Retrieve group members' profile information
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-group-member-profile
         /// </summary>
         /// <param name="groupId">Identifier of the group</param>
-        /// <returns>List of UserProfile</returns>
-        Task<IList<UserProfile>> GetGroupMemberProfilesAsync(string groupId);
+        /// <param name="userId">Identifier of the user</param>
+        Task<UserProfile> GetGroupMemberProfileAsync(string groupId, string userId);
 
         /// <summary>
-        /// Leave a group.
-        /// Use the ID that is returned via webhook from the source group. 
+        /// グループから退出する
+        /// Leave the group.
         /// https://developers.line.biz/ja/reference/messaging-api/#leave-group
         /// </summary>
         /// <param name="groupId">Group ID</param>
-        /// <returns></returns>
         Task LeaveFromGroupAsync(string groupId);
-        Task<GroupSummary> GetGroupSummary(string groupId);
-        Task<MemberCount> GetGroupMemberCount(string groupid);
+
+        /// <summary>
+        /// グループメンバーのプロフィール情報を取得する
+        /// Retrieve group members' profile information
+        /// </summary>
+        /// <param name="groupId">Identifier of the group</param>
+        Task<IList<UserProfile>> GetGroupMemberProfilesAsync(string groupId);
 
         #endregion
 
