@@ -41,7 +41,7 @@ namespace Line.Messaging
         /// <summary>
         /// Issues a short-lived channel access token. 
         /// Up to 30 tokens can be issued. If the maximum is exceeded, existing channel access tokens will be revoked in the order of when they were first issued.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#oauth
+        /// https://developers.line.biz/ja/reference/messaging-api/#oauth
         /// </summary>
         /// <param name="httpClient">HttpClient</param>
         /// <param name="channelId">ChannelId</param>
@@ -71,7 +71,7 @@ namespace Line.Messaging
 
         /// <summary>
         /// Revokes a channel access token.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#revoke-channel-access-token
+        /// https://developers.line.biz/ja/reference/messaging-api/#revoke-channel-access-token
         /// </summary>
         /// <param name="httpClient">HttpClient</param>
         /// <param name="channelAccessToken">ChannelAccessToken</param>
@@ -88,7 +88,7 @@ namespace Line.Messaging
 
         /// <summary>
         /// Instantiate LineMessagingClient by using OAuth.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#oauth
+        /// https://developers.line.biz/ja/reference/messaging-api/#oauth
         /// </summary>
         /// <param name="channelId">ChannelId</param>
         /// <param name="channelSecret">ChannelSecret</param>
@@ -411,11 +411,11 @@ $@"{{
         #endregion
 
         #region Profile
-        // https://developers.line.me/en/docs/messaging-api/reference/#profile
+        // https://developers.line.biz/ja/reference/messaging-api/#profile
 
         /// <summary>
         /// Get user profile information.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-profile
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-profile
         /// </summary>
         /// <param name="userId">User ID</param>
         /// <returns></returns>
@@ -604,28 +604,14 @@ $@"{{
         #endregion
 
         #region Rich menu
-        // https://developers.line.me/en/docs/messaging-api/reference/#rich-menu
+        // https://developers.line.biz/ja/reference/messaging-api/#rich-menu
 
         /// <summary>
-        /// Gets a rich menu via a rich menu ID.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
-        /// </summary>
-        /// <param name="richMenuId">ID of an uploaded rich menu</param>
-        /// <returns>RichMenu</returns>
-        public virtual async Task<RichMenu> GetRichMenuAsync(string richMenuId)
-        {
-            var json = await GetStringAsync($"{_uri}/bot/richmenu/{richMenuId}").ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ResponseRichMenu>(json);
-        }
-
-        /// <summary>
-        /// Creates a rich menu. 
-        /// Note: You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed.You can create up to 10 rich menus for one bot.
-        /// The rich menu represented as a rich menu object.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
+        /// リッチメニューを作成する
+        /// Create a rich menu
+        /// https://developers.line.biz/ja/reference/messaging-api/#create-rich-menu
         /// </summary>
         /// <param name="richMenu">RichMenu</param>
-        /// <returns>RichMenu Id</returns>
         public virtual async Task<string> CreateRichMenuAsync(RichMenu richMenu)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/richmenu");
@@ -639,8 +625,20 @@ $@"{{
         }
 
         /// <summary>
+        /// Gets a rich menu via a rich menu ID.
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu
+        /// </summary>
+        /// <param name="richMenuId">ID of an uploaded rich menu</param>
+        /// <returns>RichMenu</returns>
+        public virtual async Task<RichMenu> GetRichMenuAsync(string richMenuId)
+        {
+            var json = await GetStringAsync($"{_uri}/bot/richmenu/{richMenuId}").ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ResponseRichMenu>(json);
+        }
+
+        /// <summary>
         /// Deletes a rich menu.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
+        /// https://developers.line.biz/ja/reference/messaging-api/#delete-rich-menu
         /// </summary>
         /// <param name="richMenuId">RichMenu Id</param>
         public virtual async Task DeleteRichMenuAsync(string richMenuId)
@@ -650,7 +648,7 @@ $@"{{
 
         /// <summary>
         /// Gets the ID of the rich menu linked to a user.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu-id-of-user
         /// </summary>
         /// <param name="userId">ID of the user</param>
         /// <returns>RichMenu Id</returns>
@@ -675,7 +673,7 @@ $@"{{
         /// <summary>
         /// Links a rich menu to a user.
         /// Note: Only one rich menu can be linked to a user at one time.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-user
+        /// https://developers.line.biz/ja/reference/messaging-api/#link-rich-menu-to-user
         /// </summary>
         /// <param name="userId">ID of the user</param>
         /// <param name="richMenuId">ID of an uploaded rich menu</param>
@@ -688,7 +686,7 @@ $@"{{
 
         /// <summary>
         /// Unlinks a rich menu from a user.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-from-user
+        /// https://developers.line.biz/ja/reference/messaging-api/#unlink-rich-menu-from-user
         /// </summary>
         /// <param name="userId">ID of the user</param>
         /// <returns></returns>
@@ -700,7 +698,7 @@ $@"{{
 
         /// <summary>
         /// Downloads an image associated with a rich menu.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-image
+        /// https://developers.line.biz/ja/reference/messaging-api/#download-rich-menu-image
         /// </summary>
         /// <param name="richMenuId">RichMenu Id</param>
         /// <returns>Image as ContentStream</returns>
@@ -716,7 +714,7 @@ $@"{{
         /// Uploads and attaches a jpeg image to a rich menu.
         /// Images must have one of the following resolutions: 2500x1686, 2500x843. 
         /// You cannot replace an image attached to a rich menu.To update your rich menu image, create a new rich menu object and upload another image.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+        /// https://developers.line.biz/ja/reference/messaging-api/#upload-rich-menu-image
         /// </summary>
         /// <param name="stream">Jpeg image for the rich menu</param>
         /// <param name="richMenuId">The ID of the rich menu to attach the image to.</param>
@@ -729,7 +727,7 @@ $@"{{
         /// Uploads and attaches a png image to a rich menu.
         /// Images must have one of the following resolutions: 2500x1686, 2500x843. 
         /// You cannot replace an image attached to a rich menu.To update your rich menu image, create a new rich menu object and upload another image.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+        /// https://developers.line.biz/ja/reference/messaging-api/#upload-rich-menu-image
         /// </summary>
         /// <param name="stream">Png image for the rich menu</param>
         /// <param name="richMenuId">The ID of the rich menu to attach the image to.</param>
@@ -751,7 +749,7 @@ $@"{{
 
         /// <summary>
         /// Gets a list of all uploaded rich menus.
-        /// https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
+        /// https://developers.line.biz/ja/reference/messaging-api/#get-rich-menu-list
         /// </summary>
         /// <returns>List of ResponseRichMenu</returns>
         public virtual async Task<IList<ResponseRichMenu>> GetRichMenuListAsync()
