@@ -36,7 +36,7 @@ namespace Line.Messaging
         }
 
         #region OAuth
-        // https://developers.line.me/en/docs/messaging-api/reference/#oauth
+        // https://developers.line.biz/ja/reference/messaging-api/#oauth
 
         /// <summary>
         /// Issues a short-lived channel access token. 
@@ -213,7 +213,7 @@ $@"{{
         /// Only available for plans which support push messages. Messages cannot be sent to groups or rooms
         /// https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
         /// </summary>
-        /// <param name="to">IDs of the receivers. Max: 150 users</param>
+        /// <param name="to">IDs of the receivers. Max: 500 users</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
         public virtual async Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
