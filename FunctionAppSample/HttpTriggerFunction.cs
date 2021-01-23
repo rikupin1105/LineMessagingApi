@@ -3,6 +3,7 @@ using Line.Messaging.Webhooks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -12,60 +13,31 @@ namespace FunctionAppSample
 {
     public static class HttpTriggerFunction
     {
-        static LineMessagingClient lineMessagingClient;
-
-        static HttpTriggerFunction()
+        [FunctionName("FreedomBot")]
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestMessage req, ILogger log)
         {
-            lineMessagingClient = new LineMessagingClient(System.Configuration.ConfigurationManager.AppSettings["ChannelAccessToken"]);
-            var sp = ServicePointManager.FindServicePoint(new Uri("https://api.line.me"));
-            sp.ConnectionLeaseTimeout = 60 * 1000;
-        }
-
-        [FunctionName("LineMessagingApiSample")]
-        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequestMessage req, TraceWriter log)
-        {
-            try
             {
-                var channelSecret = System.Configuration.ConfigurationManager.AppSettings["ChannelSecret"];
-                var botUserId = System.Configuration.ConfigurationManager.AppSettings["BotUserId"];
-                var events = await req.GetWebhookEventsAsync(channelSecret, botUserId);
-                var connectionString = System.Configuration.ConfigurationManager.AppSettings["AzureWebJobsStorage"];
-                var botStatus = await TableStorage<BotStatus>.CreateAsync(connectionString, "botstatus");
-                var blobStorage = await BlobStorage.CreateAsync(connectionString, "linebotcontainer");
-
-                var app = new LineBotApp(lineMessagingClient, botStatus, blobStorage, log);
-
-                /* To run sample apps in the samples directory, comment out the above line and cancel this comment out.
-                var app = await AppSwitcher.SwitchAppsAsync(events,lineMessagingClient, botStatus, blobStorage, log);
-                // */
-
-                await app.RunAsync(events);
-
-            }
-            catch (InvalidSignatureException e)
-            {
-                return req.CreateResponse(HttpStatusCode.Forbidden, new { e.Message });
-            }
-            catch (LineResponseException e)
-            {
-                log.Error(e.ToString());
-                var debugUserId = System.Configuration.ConfigurationManager.AppSettings["DebugUser"];
-                if (debugUserId != null)
+                try
                 {
-                    await lineMessagingClient.PushMessageAsync(debugUserId, $"{e.StatusCode}({(int)e.StatusCode}), {e.ResponseMessage.ToString()}");
+                    log.LogInformation(req.Content.ReadAsStringAsync().Result);
+                    //var channelSecret = "ChannelSecret";
+                    //var LineMessagingClient = new LineMessagingClient("ChannelAccessToken");
+                    var channelSecret = "249a38ce3e56f4d06eb03068d31260e1";
+                    var LineMessagingClient = new LineMessagingClient("KkHD2SXj+QFf+F7rNcBro7z2W2ooimmiu/FWnrq/sJmwhOfxJKatqHHEuamTRTxXa77vG4RUouTmyI/cingpwHMIbZvth8FY30RpBtOT4J7xsImM+Cr+XexxbYhJhfLn0Qo8UzZOvc6HAlgxwddekgdB04t89/1O/w1cDnyilFU=");
+                    var events = await req.GetWebhookEventsAsync(channelSecret);
+
+                    var app = new LineBotApp(LineMessagingClient);
+
+                    await app.RunAsync(events);
+
                 }
-            }
-            catch (Exception e)
-            {
-                log.Error(e.ToString());
-                var debugUserId = System.Configuration.ConfigurationManager.AppSettings["DebugUser"];
-                if (debugUserId != null)
+                catch (InvalidSignatureException e)
                 {
-                    await lineMessagingClient.PushMessageAsync(debugUserId, e.Message);
+                    return req.CreateResponse(HttpStatusCode.Forbidden, new { e.Message });
                 }
+
+                return req.CreateResponse(HttpStatusCode.OK);
             }
-            return req.CreateResponse(HttpStatusCode.OK);
         }
     }
-
 }
