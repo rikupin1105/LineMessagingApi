@@ -23,7 +23,7 @@ namespace Line.Messaging
         /// </summary>
         public string Text { get; set; }
 
-        public Emoji[] Emojis { get; set; }
+        //public Emoji[] Emojis { get; set; }
 
         /// <summary>
         /// Constructor

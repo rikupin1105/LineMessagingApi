@@ -28,7 +28,7 @@ namespace Line.Messaging.Webhooks
         /// JSON object which contains the source of the event
         /// </summary>
         public WebhookEventSource Source { get; }
-        public WebhookEvent(WebhookEventType type, WebhookEventSource source, long timestamp,string mode)
+        public WebhookEvent(WebhookEventType type, WebhookEventSource source, long timestamp, string mode)
         {
             Type = type;
             Source = source;
@@ -62,7 +62,7 @@ namespace Line.Messaging.Webhooks
                 case WebhookEventType.Unfollow:
                     return new UnfollowEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.mode);
                 case WebhookEventType.Join:
-                    return new JoinEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken,(string)dynamicObject.mode);
+                    return new JoinEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, (string)dynamicObject.mode);
                 case WebhookEventType.Leave:
                     return new LeaveEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.mode);
                 case WebhookEventType.Postback:

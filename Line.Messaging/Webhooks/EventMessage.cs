@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Line.Messaging.Webhooks
 {
@@ -34,12 +35,51 @@ namespace Line.Messaging.Webhooks
             switch (messageType)
             {
                 case EventMessageType.Text:
-                    return new TextEventMessage((string)message.id, (string)message.text,(Emoji[])message.emojis,(Mention)message.mention);
+                    var emojis_list = new List<Emoji>();
+                    var mentionees_list = new List<Mentionees>();
+
+                    try
+                    {
+                        for (int i = 0; i < message.emojis.Count; i++)
+                        {
+                            var emoji = new Emoji(
+                                (int)message.emojis[i]?.index,
+                                (int)message.emojis[i]?.length,
+                                (string)message.emojis[i]?.productId,
+                                (string)message.emojis[i]?.emojiId);
+                            emojis_list.Add(emoji);
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    try
+                    {
+                        for (int i = 0; i < message.mention.mentionees.Count; i++)
+                        {
+                            var mentionees = new Mentionees(
+                                (int)message.mention.mentionees[i]?.index,
+                                (int)message.mention.mentionees[i]?.length,
+                                (string)message.mention.mentionees[i]?.userId);
+                            mentionees_list.Add(mentionees);
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    var emojis = emojis_list.ToArray();
+                    var mention = new Mention(mentionees_list.ToArray());
+
+
+                    return new TextEventMessage((string)message.id, (string)message.text, emojis, mention);
+
                 case EventMessageType.Image:
                 case EventMessageType.Audio:
                 case EventMessageType.Video:
                     ContentProvider contentProvider = null;
-                    if (Enum.TryParse((string)message.contentProvider?.type,true, out ContentProviderType providerType))
+                    if (Enum.TryParse((string)message.contentProvider?.type, true, out ContentProviderType providerType))
                     {
                         contentProvider = new ContentProvider(providerType,
                                 (string)message.contentProvider?.originalContentUrl,
@@ -50,7 +90,7 @@ namespace Line.Messaging.Webhooks
                     return new LocationEventMessage((string)message.id, (string)message.title, (string)message.address,
                         (decimal)message.latitude, (decimal)message.longitude);
                 case EventMessageType.Sticker:
-                    return new StickerEventMessage((string)message.id, (string)message.packageId, (string)message.stickerId,(string[])message.keywords,(StickerResourceType)message.stickerResourceType);
+                    return new StickerEventMessage((string)message.id, (string)message.packageId, (string)message.stickerId, (string[])message.keywords, (StickerResourceType)message.stickerResourceType);
                 case EventMessageType.File:
                     return new FileEventMessage((string)message.id, (string)message.fileName, (long)message.fileSize);
                 default:
