@@ -214,7 +214,7 @@ namespace Line.Messaging
         /// https://developers.line.biz/ja/reference/messaging-api/#get-bot-info
         /// </summary>
         /// <param name="groupId"></param>
-        Task<GroupSummary> GetBotInfo(string groupId);
+        Task<BotInfo> GetBotInfo(string groupId);
         #endregion
 
         #region Group
