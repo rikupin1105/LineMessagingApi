@@ -7,9 +7,6 @@
 [こちら](https://github.com/pierre3/LineMessagingApi)を勝手に引き継いだバージョンです。
 自分に必要な機能を実装しているので、最新のAPIとは差があります。Issue PR は歓迎です。
 
-## はじめに
-このレポジトリには SDK 本体だけでなく、サンプルや Visual Studio 用の各種テンプレートが含まれます。
-
 ### .Net Standard クラスライブラリ   
 NuGet マネージャーなどでプロジェクトに参照可能です。
 
@@ -38,6 +35,8 @@ Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notification
 Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages)
 Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages, bool notificationDisabled = false)
 Task MultiCastMessageAsync(IList<string> to, bool notificationDisabled = false, params string[] messages)
+Task BroadCastMessageAsync(IList<ISendMessage> messages, bool notificationDisabled = false)
+Task BroadCastMessageAsync(bool notificationDisabled = false, params string[] messages)
 Task<ContentStream> GetContentStreamAsync(string messageId)
 Task<UserProfile> GetUserProfileAsync(string userId)
 Task<byte[]> GetContentBytesAsync(string messageId)
@@ -52,7 +51,7 @@ Task LeaveFromRoomAsync(string roomId)
 ```
 
 ## Webhook イベントのパース
-GetWebhookEventsAsync 拡張メソッドを呼び出して、要求から LINE イベントを取得できます。例) [FunctionAppSample/HttpTriggerFunction.sc](https://github.com/pierre3/LineMessagingApi/blob/master/FunctionAppSample/HttpTriggerFunction.cs) 
+GetWebhookEventsAsync 拡張メソッドを呼び出して、要求から LINE イベントを取得できます。例) [FunctionAppSample/HttpTriggerFunction.cs](https://github.com/rikupin1105/LineMessagingApi/blob/master/FunctionAppSample/HttpTriggerFunction.cs) 
 
 ```cs
 using Line.Messaging;
@@ -60,8 +59,8 @@ using Line.Messaging.Webhooks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -70,49 +69,31 @@ namespace FunctionAppSample
 {
   public static class HttpTriggerFunction
   {
-    static LineMessagingClient lineMessagingClient;
-
-    static HttpTriggerFunction()
+    [FunctionName("FreedomBot")]
+    public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequestMessage req, ILogger log)
     {
-      lineMessagingClient = new LineMessagingClient(System.Configuration.ConfigurationManager.AppSettings["ChannelAccessToken"]);
-      var sp = ServicePointManager.FindServicePoint(new Uri("https://api.line.me"));
-      sp.ConnectionLeaseTimeout = 60 * 1000;
-    }
+      {
+        try
+        {
+          log.LogInformation(req.Content.ReadAsStringAsync().Result);
+          var channelSecret = "ChannelSecret";
+          var LineMessagingClient = new LineMessagingClient("ChannelAccessToken");
+          var events = await req.GetWebhookEventsAsync(channelSecret);
 
-    [FunctionName("LineMessagingApiSample")]
-    public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequestMessage req, TraceWriter log)
-    {
-      IEnumerable<WebhookEvent> events;
-      try
-      {
-        //Parse Webhook-Events
-        var channelSecret = System.Configuration.ConfigurationManager.AppSettings["ChannelSecret"];
-        events = await req.GetWebhookEventsAsync(channelSecret);
-      }
-      catch (InvalidSignatureException e)
-      {
-        //Signature validation failed
-        return req.CreateResponse(HttpStatusCode.Forbidden, new { Message = e.Message });
-      }
+          var app = new LineBotApp(LineMessagingClient);
 
-      try
-      {
-        var connectionString = System.Configuration.ConfigurationManager.AppSettings["AzureWebJobsStorage"];
-        var tableStorage = await LineBotTableStorage.CreateAsync(connectionString);
-        var blobStorage = await BlobStorage.CreateAsync(connectionString, "linebotcontainer");
-        //Process the webhook-events
-        var app = new LineBotApp(lineMessagingClient, tableStorage, blobStorage, log);
-        await app.RunAsync(events);
-      }
-      catch (Exception e)
-      {
-        log.Error(e.ToString());
-      }
+          await app.RunAsync(events);
 
-      return req.CreateResponse(HttpStatusCode.OK);
+        }
+        catch (InvalidSignatureException e)
+        {
+          return req.CreateResponse(HttpStatusCode.Forbidden, new { e.Message });
+        }
+
+        return req.CreateResponse(HttpStatusCode.OK);
+      }
     }
   }
-
 }
 ```
 ## Webhook イベントのハンドル
@@ -134,7 +115,7 @@ public abstract class WebhookApplication
 
 最後に作成したクラスのインスタンスを作成し、RunAsync メソッドに対してパースした LINE イベントを渡します。
 
-例) [Line.Messaging/Webhooks/WebhookApplication.cs](https://github.com/pierre3/LineMessagingApi/blob/master/Line.Messaging/Webhooks/WebhookApplication.cs) 
+例) [Line.Messaging/Webhooks/WebhookApplication.cs](https://github.com/rikupin1105/LineMessagingApi/blob/master/Line.Messaging/Webhooks/WebhookApplication.cs) 
 
 
 
@@ -142,65 +123,30 @@ public abstract class WebhookApplication
 ```cs
 class LineBotApp : WebhookApplication
 {
-  private LineMessagingClient MessagingClient { get; }
-  private TraceWriter Log { get; }
-  
-  public WebhookApplication(LineMessagingClient lineMessagingClient,TraceWriter log)
+  private LineMessagingClient LineMessagingClient { get; set; }
+  public LineBotApp(LineMessagingClient lineMessagingClient)
   {
-      MessagingClient = lineMessagingClient;
-      Log = log;
+      LineMessagingClient = lineMessagingClient;
   }
-
   protected override async Task OnMessageAsync(MessageEvent ev)
   {
-    Log.Info($"SourceType:{ev.Source.Type},SourceId:{ev.Source.Id}");
     switch (ev.Message.Type)
     {
       case EventMessageType.Text:
-        await MessagingClient.ReplyMessageAsync(ev.ReplyToken, ((TextEventMessage)ev.Message).Text);
         break;
-
       case EventMessageType.Image:
+        break;
       case EventMessageType.Audio:
+        break;
       case EventMessageType.Video:
+        break;
       case EventMessageType.File:
+        break;
       case EventMessageType.Location:
+        break;
       case EventMessageType.Sticker:
         break;
-
     }
   }
-
-  protected override async Task OnFollowAsync(FollowEvent ev)
-  {
-      throw new NotImplementedException();
-  }
-
-  protected override async Task OnUnfollowAsync(UnfollowEvent ev)
-  {
-      throw new NotImplementedException();
-  }
-
-  protected override async Task OnJoinAsync(JoinEvent ev)
-  {
-    throw new NotImplementedException();
-  }
-
-  protected override async Task OnLeaveAsync(LeaveEvent ev)
-  {
-    throw new NotImplementedException();
-  }
-
-  protected override Task OnBeaconAsync(BeaconEvent ev)
-  {
-    throw new NotImplementedException();
-  }
-
-  protected override async Task OnPostbackAsync(PostbackEvent ev)
-  {
-    throw new NotImplementedException();
-  }
-
 }
 ```
-各サンプルでより詳細が確認できます。
