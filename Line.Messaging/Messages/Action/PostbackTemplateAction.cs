@@ -5,7 +5,7 @@ namespace Line.Messaging
     /// <summary>
     /// When a control associated with this action is tapped, a postback event is returned via webhook with the specified string in the data field.
     /// If you have included the text field, the string in the text field is sent as a message from the user.
-    /// https://developers.line.me/en/docs/messaging-api/reference/#postback-action
+    /// https://developers.line.biz/ja/docs/messaging-api/actions/#postback-action
     /// </summary>
     public class PostbackTemplateAction : ITemplateAction
     {
@@ -26,18 +26,18 @@ namespace Line.Messaging
         public string Data { get; }
 
         /// <summary>
-        /// Deprecated. Text displayed in the chat as a message sent by the user when the action is performed. Returned from the server through a webhook.
-        /// Max: 300 characters
-        /// The displayText and text fields cannot both be used at the same time.
-        /// </summary>
-        public string Text { get; }
-
-        /// <summary>
         /// Text displayed in the chat as a message sent by the user when the action is performed.
         /// Max: 300 characters
         /// The displayText and text fields cannot both be used at the same time.
         /// </summary>
         public string DisplayText { get; }
+
+        /// <summary>
+        /// Deprecated. Text displayed in the chat as a message sent by the user when the action is performed. Returned from the server through a webhook.
+        /// Max: 300 characters
+        /// The displayText and text fields cannot both be used at the same time.
+        /// </summary>
+        public string Text { get; }
 
         /// <summary>
         /// Constructor

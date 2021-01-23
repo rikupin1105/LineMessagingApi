@@ -5,7 +5,7 @@ namespace Line.Messaging
 {
     /// <summary>
     /// Rich menu object
-    /// https://developers.line.me/en/docs/messaging-api/reference/#rich-menu-object
+    /// https://developers.line.biz/ja/reference/messaging-api/#rich-menu-object
     /// </summary>
     public class RichMenu
     {

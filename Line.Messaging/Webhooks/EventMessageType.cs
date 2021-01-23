@@ -9,8 +9,8 @@
         Image,
         Video,
         Audio,
+        File,
         Location,
-        Sticker,
-        File
+        Sticker
     }
 }
