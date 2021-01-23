@@ -72,8 +72,11 @@ namespace Line.Messaging.Webhooks
                     var emojis = emojis_list.ToArray();
                     var mention = new Mention(mentionees_list.ToArray());
 
-
-                    return new TextEventMessage((string)message.id, (string)message.text, emojis, mention);
+                    return new TextEventMessage(
+                        (string)message.id,
+                        (string)message.text,
+                        emojis,
+                        mention);
 
                 case EventMessageType.Image:
                 case EventMessageType.Audio:
@@ -85,14 +88,33 @@ namespace Line.Messaging.Webhooks
                                 (string)message.contentProvider?.originalContentUrl,
                                 (string)message.contentProvider?.previewContentUrl);
                     }
-                    return new MediaEventMessage(messageType, (string)message.id, contentProvider, (int?)message.duration);
+                    return new MediaEventMessage(
+                        messageType,
+                        (string)message.id,
+                        contentProvider,
+                        (int?)message.duration);
+
                 case EventMessageType.Location:
-                    return new LocationEventMessage((string)message.id, (string)message.title, (string)message.address,
-                        (decimal)message.latitude, (decimal)message.longitude);
+                    return new LocationEventMessage(
+                        (string)message.id,
+                        (string)message.title,
+                        (string)message.address,
+                        (decimal)message.latitude,
+                        (decimal)message.longitude);
+
                 case EventMessageType.Sticker:
-                    return new StickerEventMessage((string)message.id, (string)message.packageId, (string)message.stickerId, (string[])message.keywords, (StickerResourceType)message.stickerResourceType);
+                    return new StickerEventMessage(
+                        (string)message.id,
+                        (string)message.packageId,
+                        (string)message.stickerId,
+                        (string[])message.keywords,
+                        (StickerResourceType)message.stickerResourceType);
+
                 case EventMessageType.File:
-                    return new FileEventMessage((string)message.id, (string)message.fileName, (long)message.fileSize);
+                    return new FileEventMessage(
+                        (string)message.id,
+                        (string)message.fileName,
+                        (long)message.fileSize);
                 default:
                     return null;
             }
