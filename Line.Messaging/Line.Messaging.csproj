@@ -7,7 +7,7 @@
     <Product>Line Messaging API</Product>
     <Description></Description>
     <Version>1.4.7</Version>
-    <Copyright></Copyright>
+    <Copyright>https://github.com/rikupin1105/LineMessagingApi/blob/main/LICENSE</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>Line Messaging API;line;bot</PackageTags>
     <PackageProjectUrl>https://github.com/rikupin1105/LineMessagingApi/</PackageProjectUrl>
@@ -19,6 +19,7 @@
     <FileVersion>1.4.7.0</FileVersion>
     <PackageId>Line.Messaging.rikupin</PackageId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression></PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
