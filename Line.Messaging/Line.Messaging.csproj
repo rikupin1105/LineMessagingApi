@@ -6,18 +6,19 @@
     <Company>rikupin</Company>
     <Product>Line Messaging API</Product>
     <Description></Description>
-    <Version>1.4.6.3</Version>
+    <Version>1.4.7</Version>
     <Copyright></Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>Line Messaging API;line;bot</PackageTags>
     <PackageProjectUrl>https://github.com/rikupin1105/LineMessagingApi/</PackageProjectUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <RepositoryUrl>https://github.com/rikupin1105/LineMessagingApi/</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+    <RepositoryType></RepositoryType>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>1.4.6.3</AssemblyVersion>
-    <FileVersion>1.4.6.3</FileVersion>
+    <AssemblyVersion>1.4.7.0</AssemblyVersion>
+    <FileVersion>1.4.7.0</FileVersion>
     <PackageId>Line.Messaging.rikupin</PackageId>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
