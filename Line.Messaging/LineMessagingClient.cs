@@ -136,7 +136,7 @@ namespace Line.Messaging
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
         /// <param name="notificationDisabled">Notify the user.</param>
-        public virtual Task ReplayMessageAsync(string replyToken, string message, bool notificationDisabled = false)
+        public virtual Task ReplyMessageAsync(string replyToken, string message, bool notificationDisabled = false)
         {
             return ReplyMessageAsync(replyToken, new ISendMessage[] { new TextMessage(message) }, notificationDisabled);
         }
