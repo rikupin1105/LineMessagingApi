@@ -32,6 +32,7 @@ Install-Package Line.Messaging.rikupin -Version 1.4.6.3
 Task ReplyMessageAsync(string replyToken, string message, bool notificationDisabled = false)
 Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false)
 Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
+Task PushMessageAsync(string to, String message, bool notificationDisabled = false)
 Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false)
 Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages)
 Task MultiCastMessageAsync(IList<string> to, IList<ISendMessage> messages, bool notificationDisabled = false)
