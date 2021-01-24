@@ -122,6 +122,7 @@ namespace Line.Messaging
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/reply");
             var content = JsonConvert.SerializeObject(new { replyToken, messages, notificationDisabled }, _jsonSerializerSettings);
+            Console.WriteLine(content);
             request.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
             var response = await _client.SendAsync(request).ConfigureAwait(false);
@@ -175,6 +176,19 @@ $@"{{
 
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// プッシュメッセージを送る。
+        /// Send push messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
+        /// </summary>
+        /// <param name="to">ID of the receiver</param>
+        /// <param name="messages">Set reply messages with Json string.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        public virtual Task PushMessageAsync(string to, string message, bool notificationDisabled = false)
+        {
+            return PushMessageAsync(to, new ISendMessage[] { new TextMessage(message) }, notificationDisabled);
         }
 
         /// <summary>

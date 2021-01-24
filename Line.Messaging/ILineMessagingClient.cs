@@ -69,6 +69,16 @@ namespace Line.Messaging
         /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
         /// <param name="to">ID of the receiver</param>
+        /// <param name="messages">Set reply messages with Json string.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        Task PushMessageAsync(string to, string message, bool notificationDisabled = false);
+
+        /// <summary>
+        /// プッシュメッセージを送る。
+        /// Send push messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
+        /// </summary>
+        /// <param name="to">ID of the receiver</param>
         /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Set reply messages with Json string.</param>
         Task PushMessageWithJsonAsync(string to, bool notificationDisabled = false, params string[] messages);
