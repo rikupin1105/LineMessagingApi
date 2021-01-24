@@ -12,6 +12,7 @@
         Join,
         Leave,
         Postback,
+        VideoPlayComplete,
         Beacon,
         AccountLink,
         MemberJoined,
