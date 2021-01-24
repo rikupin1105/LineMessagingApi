@@ -11,7 +11,7 @@
         public StickerResourceType StickerResourceType { get; }
         public string[] Keywords { get; }
 
-        public StickerEventMessage(string id, string packageId, string stickerId,string[] keywords, StickerResourceType stickerResourceType) : base(EventMessageType.Sticker, id)
+        public StickerEventMessage(string id, string packageId, string stickerId, string[] keywords, StickerResourceType stickerResourceType) : base(EventMessageType.Sticker, id)
         {
             PackageId = packageId;
             StickerId = stickerId;

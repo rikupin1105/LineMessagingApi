@@ -103,11 +103,23 @@ namespace Line.Messaging.Webhooks
                         (decimal)message.longitude);
 
                 case EventMessageType.Sticker:
+                    var keywords_list = new List<string>();
+                    try
+                    {
+                        for (int i = 0; i < message.keywords.Count; i++)
+                        {
+                            keywords_list.Add((string)message.keywords[i]);
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                     return new StickerEventMessage(
                         (string)message.id,
                         (string)message.packageId,
                         (string)message.stickerId,
-                        (string[])message.keywords,
+                        keywords_list.ToArray(),
                         (StickerResourceType)message.stickerResourceType);
 
                 case EventMessageType.File:

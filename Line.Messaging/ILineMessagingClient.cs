@@ -31,7 +31,7 @@ namespace Line.Messaging
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
         /// <param name="notificationDisabled">Notify the user.</param>
-        Task ReplayMessageAsync(string replyToken, string message, bool notificationDisabled = false);
+        Task ReplyMessageAsync(string replyToken, string message, bool notificationDisabled = false);
 
         /// <summary>
         /// 応答メッセージを送る。
