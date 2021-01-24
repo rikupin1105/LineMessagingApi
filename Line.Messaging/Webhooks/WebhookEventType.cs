@@ -6,6 +6,7 @@
     public enum WebhookEventType
     {
         Message,
+        Unsend,
         Follow,
         Unfollow,
         Join,

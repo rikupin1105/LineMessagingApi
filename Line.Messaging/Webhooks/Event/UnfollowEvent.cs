@@ -8,6 +8,7 @@
         public UnfollowEvent(WebhookEventSource source, long timestamp, string mode)
             : base(WebhookEventType.Unfollow, source, timestamp, mode)
         {
+
         }
     }
 }

@@ -57,6 +57,9 @@ namespace Line.Messaging.Webhooks
                     EventMessage eventMessage = EventMessage.CreateFrom(dynamicObject);
                     if (eventMessage == null) { return null; }
                     return new MessageEvent(eventSource, (long)dynamicObject.timestamp, eventMessage, (string)dynamicObject.replyToken, (string)dynamicObject.mode);
+                case WebhookEventType.Unsend:
+                    var unsend = new Unsend((string)dynamicObject.unsend?.messageId);
+                    return new UnsendEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.mode, unsend);
                 case WebhookEventType.Follow:
                     return new FollowEvent(eventSource, (long)dynamicObject.timestamp, (string)dynamicObject.replyToken, (string)dynamicObject.mode);
                 case WebhookEventType.Unfollow:
