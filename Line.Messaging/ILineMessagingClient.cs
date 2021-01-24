@@ -29,6 +29,16 @@ namespace Line.Messaging
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
         /// <param name="replyToken">ReplyToken</param>
+        /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
+        Task ReplayMessageAsync(string replyToken, string message, bool notificationDisabled = false);
+
+        /// <summary>
+        /// 応答メッセージを送る。
+        /// Send response messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
+        /// </summary>
+        /// <param name="replyToken">ReplyToken</param>
         /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply Text messages. Up to 5 messages.</param>
         Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages);

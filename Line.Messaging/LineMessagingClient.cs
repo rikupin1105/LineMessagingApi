@@ -136,6 +136,19 @@ namespace Line.Messaging
         /// <param name="replyToken">ReplyToken</param>
         /// <param name="messages">Reply messages. Up to 5 messages.</param>
         /// <param name="notificationDisabled">Notify the user.</param>
+        public virtual Task ReplayMessageAsync(string replyToken, string message, bool notificationDisabled = false)
+        {
+            return ReplyMessageAsync(replyToken, new ISendMessage[] { new TextMessage(message) }, notificationDisabled);
+        }
+
+        /// <summary>
+        /// 応答メッセージを送る。
+        /// Send response messages.
+        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
+        /// </summary>
+        /// <param name="replyToken">ReplyToken</param>
+        /// <param name="messages">Reply messages. Up to 5 messages.</param>
+        /// <param name="notificationDisabled">Notify the user.</param>
         public virtual Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
         {
             return ReplyMessageAsync(replyToken, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
@@ -395,7 +408,7 @@ $@"{{
         {
             var response = await GetStringAsync($"{_uri}/bot/message/delivery/multicast?date={date.ToString("yyyyMMdd")}");
             return JsonConvert.DeserializeObject<NumberOfMessages>(response);
-        } 
+        }
 
         /// <summary>
         /// 送信済みのブロードキャストメッセージの数を取得する。
@@ -537,7 +550,7 @@ $@"{{
             while (continuationToken != null);
             return result;
         }
-        
+
         #endregion
 
         #region Room
@@ -582,7 +595,7 @@ $@"{{
         /// </summary>
         /// <param name="roomId">Identifier of the room</param>
         /// <returns>List of UserProfiles</returns>
-        public virtual async Task<UserProfile> GetRoomMemberProfilesAsync(string roomId,string userId)
+        public virtual async Task<UserProfile> GetRoomMemberProfilesAsync(string roomId, string userId)
         {
             var requestUrl = $"{_uri}/bot/room/{roomId}/members/{userId}";
 

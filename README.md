@@ -29,6 +29,7 @@ Install-Package Line.Messaging.rikupin -Version 1.4.6.3
 
 このクラスで LINE Messaging API プラットフォームと通信します。内部で HttpClient ベースの非同期通信を利用しており、以下のような機能を提供します。
 ```cs
+Task ReplyMessageAsync(string replyToken, string message, bool notificationDisabled = false)
 Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false)
 Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
 Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false)
