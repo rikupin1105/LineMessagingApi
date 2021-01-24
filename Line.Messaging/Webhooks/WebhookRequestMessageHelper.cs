@@ -26,7 +26,7 @@ namespace Line.Messaging.Webhooks
 
             var content = await request.Content.ReadAsStringAsync();
 
-            var xLineSignature = request.Headers.GetValues("X-Line-Signature").FirstOrDefault();
+            var xLineSignature = request.Headers.GetValues("x-line-signature").FirstOrDefault();
             if (string.IsNullOrEmpty(xLineSignature) || !VerifySignature(channelSecret, xLineSignature, content))
             {
                 throw new InvalidSignatureException("Signature validation faild.");
