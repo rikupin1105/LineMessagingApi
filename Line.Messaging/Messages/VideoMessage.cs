@@ -33,6 +33,11 @@
         public string PreviewImageUrl { get; set; }
 
         /// <summary>
+        /// 動画視聴完了イベントが発生したときに、動画を識別するためのID。trackingIdを付与した動画メッセージを送信した場合に限り、ユーザーが動画の視聴を完了すると動画視聴完了イベントが発生します。
+        /// </summary>
+        public string TrackingId { get; set; }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="originalContentUrl">
@@ -52,12 +57,13 @@
         /// <param name="quickReply">
         /// QuickReply
         /// </param>
-        public VideoMessage(string originalContentUrl, string previerImageUrl, QuickReply quickReply = null, MessageSender messageSender = null)
+        public VideoMessage(string originalContentUrl, string previerImageUrl, string trackingId = null, QuickReply quickReply = null, MessageSender messageSender = null)
         {
             OriginalContentUrl = originalContentUrl;
             PreviewImageUrl = previerImageUrl;
             QuickReply = quickReply;
             Sender = messageSender;
+            TrackingId = trackingId;
         }
     }
 }
