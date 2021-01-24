@@ -50,6 +50,29 @@ Task LeaveFromGroupAsync(string groupId)
 Task LeaveFromRoomAsync(string roomId)
 ```
 
+## メッセージオブジェクトの作成
+[LINE Decelopers メッセージオブジェクト](https://developers.line.biz/ja/reference/messaging-api/#message-objects)
+
+```cs
+var messages = new ISendMessage[]
+{
+    new TextMessage("テキストメッセージ")
+    new StickerMessage("パッケージID","スティッカーID")
+    new ImageMessage("画像のURL","プレビュー画像のURL")
+    new VideoMessage("動画のURL","プレビュー画像のURL")
+    new AudioMessage("音声ファイルのURL",音声ファイルの長さ(ミリ秒))
+    new LocationMessage("タイトル","住所",緯度,経度)
+    new ImagemapMessage("画像のベースURL","代替テキスト",new ImagemapSize(基本画像の幅,高さ),アクションオブジェクト)
+    new TemplateMessage("代替テキスト",ボタン、確認、カルーセル、または画像カルーセルオブジェクト)
+    new FlexMessage("代替テキスト")
+    {
+       Contents = FlexMessageのコンテナ
+    }
+};
+```
+
+
+
 ## Webhook イベントのパース
 GetWebhookEventsAsync 拡張メソッドを呼び出して、要求から LINE イベントを取得できます。例) [FunctionAppSample/HttpTriggerFunction.cs](https://github.com/rikupin1105/LineMessagingApi/blob/master/FunctionAppSample/HttpTriggerFunction.cs) 
 
