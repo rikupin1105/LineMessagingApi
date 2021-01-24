@@ -17,6 +17,9 @@ namespace Line.Messaging.Webhooks
                     case MessageEvent message:
                         await OnMessageAsync(message).ConfigureAwait(false);
                         break;
+                    case UnsendEvent unsend:
+                        await OnUnsendAsync(unsend).ConfigureAwait(false);
+                        break;
                     case JoinEvent join:
                         await OnJoinAsync(join).ConfigureAwait(false);
                         break;
@@ -31,6 +34,9 @@ namespace Line.Messaging.Webhooks
                         break;
                     case PostbackEvent postback:
                         await OnPostbackAsync(postback).ConfigureAwait(false);
+                        break;
+                    case VideoPlayCompleteEvent videoPlayCompleteEvent:
+                        await OnVideoPlayCompleteAsync(videoPlayCompleteEvent).ConfigureAwait(false);
                         break;
                     case BeaconEvent beacon:
                         await OnBeaconAsync(beacon).ConfigureAwait(false);
@@ -56,7 +62,7 @@ namespace Line.Messaging.Webhooks
         }
 
         protected virtual Task OnMessageAsync(MessageEvent ev) => Task.CompletedTask;
-
+        protected virtual Task OnUnsendAsync(UnsendEvent ev) => Task.CompletedTask;
         protected virtual Task OnJoinAsync(JoinEvent ev) => Task.CompletedTask;
 
         protected virtual Task OnLeaveAsync(LeaveEvent ev) => Task.CompletedTask;
@@ -64,6 +70,8 @@ namespace Line.Messaging.Webhooks
         protected virtual Task OnFollowAsync(FollowEvent ev) => Task.CompletedTask;
 
         protected virtual Task OnUnfollowAsync(UnfollowEvent ev) => Task.CompletedTask;
+
+        protected virtual Task OnVideoPlayCompleteAsync(VideoPlayCompleteEvent ev) => Task.CompletedTask;
 
         protected virtual Task OnBeaconAsync(BeaconEvent ev) => Task.CompletedTask;
 
