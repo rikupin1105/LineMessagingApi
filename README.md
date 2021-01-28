@@ -15,10 +15,10 @@ NuGet マネージャーなどでプロジェクトに参照可能です。
 # 利用方法
 ### インストール
 ```
-dotnet add package Line.Messaging.rikupin --version 1.4.6.3
+dotnet add package Line.Messaging.rikupin --version 1.4.7.1
 ```
 ```
-Install-Package Line.Messaging.rikupin -Version 1.4.6.3
+Install-Package Line.Messaging.rikupin -Version 1.4.7.1
 ```
 以下の 3 ステップで SDK を利用します。
   - LineMessagingClient のインスタンス作成
