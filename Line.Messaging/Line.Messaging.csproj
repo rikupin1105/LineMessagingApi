@@ -6,7 +6,7 @@
     <Company>rikupin</Company>
     <Product>Line Messaging API</Product>
     <Description></Description>
-    <Version>1.4.7</Version>
+    <Version>1.4.7.1</Version>
     <Copyright>https://github.com/rikupin1105/LineMessagingApi/blob/main/LICENSE</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>Line Messaging API;line;bot</PackageTags>
@@ -15,11 +15,12 @@
     <RepositoryUrl>https://github.com/rikupin1105/LineMessagingApi/</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>1.4.7.0</AssemblyVersion>
-    <FileVersion>1.4.7.0</FileVersion>
+    <AssemblyVersion>1.4.7.1</AssemblyVersion>
+    <FileVersion>1.4.7.1</FileVersion>
     <PackageId>Line.Messaging.rikupin</PackageId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -29,6 +30,13 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
