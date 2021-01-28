@@ -122,7 +122,6 @@ namespace Line.Messaging
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/reply");
             var content = JsonConvert.SerializeObject(new { replyToken, messages, notificationDisabled }, _jsonSerializerSettings);
-            Console.WriteLine(content);
             request.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
             var response = await _client.SendAsync(request).ConfigureAwait(false);
