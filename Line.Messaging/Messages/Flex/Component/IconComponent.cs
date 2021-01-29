@@ -11,7 +11,7 @@
         public string OffsetStart { get; set; }
         public string OffsetEnd { get; set; }
         public string Size { get; set; }
-        public AspectRatio AspectRatio { get; set; }
+        public string AspectRatio { get; set; }
         public IconComponent(string url)
         {
             Url = url;
