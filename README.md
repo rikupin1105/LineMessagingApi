@@ -53,7 +53,7 @@ Task LeaveFromRoomAsync(string roomId)
 ```
 
 ## メッセージオブジェクトの作成
-[LINE Decelopers メッセージオブジェクト](https://developers.line.biz/ja/reference/messaging-api/#message-objects)
+[LINE Developers メッセージオブジェクト](https://developers.line.biz/ja/reference/messaging-api/#message-objects)
 
 ```cs
 var messages = new ISendMessage[]
