@@ -1,9 +1,5 @@
 using Line.Messaging;
 using Line.Messaging.Webhooks;
-using Microsoft.Azure.WebJobs.Host;
-using System;
-using System.Drawing;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FunctionAppSample
@@ -41,6 +37,7 @@ namespace FunctionAppSample
         protected override async Task OnUnsendAsync(UnsendEvent ev) 
         {
             //送信取り消しイベント
+            //https://developers.line.biz/ja/reference/messaging-api/#unsend-event
         }
         protected override async Task OnJoinAsync(JoinEvent ev) 
         {
