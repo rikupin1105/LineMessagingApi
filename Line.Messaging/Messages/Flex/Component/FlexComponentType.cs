@@ -12,7 +12,6 @@ namespace Line.Messaging
         Icon,
         Image,
         Separator,
-        Spacer,
         Text,
         Span
     }
