@@ -95,9 +95,6 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
-
-<br>
-
 ---
 
 ## Push
@@ -107,7 +104,6 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |to| `String`|○||
 |messages|`String`|○|
 |notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
-
 ---
 
 ## PushTextAsync(to, message, notificationDisabled, quickReply, messageSender)
