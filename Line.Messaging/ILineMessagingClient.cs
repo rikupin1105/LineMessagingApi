@@ -12,8 +12,7 @@ namespace Line.Messaging
     public interface ILineMessagingClient
     {
         #region Message 
-
-
+        // https://developers.line.biz/ja/reference/messaging-api/#messages
 
         /// <summary>
         /// 応答メッセージを送る。
@@ -40,8 +39,6 @@ namespace Line.Messaging
         Task PushVideoAsync(string to, string originalContentUrl, string previewImageUrl, string trackingId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
         Task PushAudioAsync(string to, string originalContentUrl, long duration, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
         Task PushLocationAsync(string to, string title, string address, decimal latitude, decimal longitude, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
-
-
 
         /// <summary>
         /// マルチキャストメッセージを送る。
