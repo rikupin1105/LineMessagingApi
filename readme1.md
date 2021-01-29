@@ -1,10 +1,4 @@
 # LINE Messaging API
-## 目次
----
-<br>
-<br>
-<br>
-
 # Installation
 ```
 dotnet add package Line.Messaging.rikupin
@@ -27,7 +21,7 @@ var LineMessagingClient = new LineMessagingClient("ChannelAccessToken");
 |---|---|---|
 |replytoken| `String`|`replyToken` received via webhook.|
 |message|`String`|Text message|
-|notificationDisabled|`bool`|`true `The user is not notified when a message is sent.|
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 
@@ -44,7 +38,7 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |replytoken| `String`|`replyToken` received via webhook.|
 |packageId|`String`||
 |stickerId|`String`||
-|notificationDisabled|`bool`|`true `The user is not notified when a message is sent.|
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
@@ -55,7 +49,7 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |replytoken| `String`|`replyToken` received via webhook.|
 |originalContentUrl|`String`||
 |previewImageUrl|`String`||
-|notificationDisabled|`bool`|`true `The user is not notified when a message is sent.|
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
@@ -67,7 +61,7 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |originalContentUrl|`String`||
 |previewImageUrl|`String`||
 |trackingId|`String`||
-|notificationDisabled|`bool`|`true `The user is not notified when a message is sent.|
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
@@ -78,7 +72,7 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |replytoken| `String`|`replyToken` received via webhook.|
 |originalContentUrl|`String`||
 |duration|`long`||
-|notificationDisabled|`bool`|`true `The user is not notified when a message is sent.|
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
@@ -91,6 +85,6 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |address|`String`||
 |latitude|`Decimal`||
 |longitude|`Decimal`||
-|notificationDisabled|`bool`|`true `The user is not notified when a message is sent.|
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
