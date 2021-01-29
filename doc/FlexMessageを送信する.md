@@ -67,7 +67,7 @@ await LineMessagingClient.PushMessageAsync("to",messages);
 
 ## サンプル 1
 ---
-![Flex1](https://github.com/rikupin1105/LineMessagingApi/blob/main/doc/IMG/Flex_2.png?raw=true)
+![Flex1](https://github.com/rikupin1105/LineMessagingApi/blob/main/doc/IMG/Flex_2.jpg?raw=true)
 ```cs
 new FlexMessage("フレックスメッセージ1")
 {
