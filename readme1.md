@@ -76,6 +76,16 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 ---
 
 ## ReplyLocationAsync(replyToken, title, address, latitude, longitude, notificationDisabled, quickReply, messageSender)
+|Param|Type|required|Description|
+|---|---|---|---|
+|replytoken| `String`|○|
+|title|`String`|○|
+|address|`String`|○|
+|latitude|`Decimal`|○|
+|longitude|`Decimal`|○|
+|notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
 
 <br>
 <br>
