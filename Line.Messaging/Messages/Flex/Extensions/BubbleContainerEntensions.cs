@@ -45,7 +45,7 @@ namespace Line.Messaging
         /// </param>
         /// <returns>BoxContainer</returns>
         public static BubbleContainer SetHeader(this BubbleContainer self, BoxLayout boxLayout,
-            int? flex = null, Spacing? spacing = null, Spacing? margin = null)
+            int? flex = null, string spacing = null, string margin = null)
         {
             self.Header = new BoxComponent(boxLayout)
             {
@@ -108,7 +108,7 @@ namespace Line.Messaging
         /// </param>
         /// <returns>BoxContainer</returns>
         public static BubbleContainer SetBody(this BubbleContainer self, BoxLayout boxLayout,
-            int? flex = null, Spacing? spacing = null, Spacing? margin = null)
+            int? flex = null, string spacing = null, string margin = null)
         {
             self.Body = new BoxComponent(boxLayout)
             {
@@ -171,7 +171,7 @@ namespace Line.Messaging
         /// </param>
         /// <returns>BoxContainer</returns>
         public static BubbleContainer SetFooter(this BubbleContainer self, BoxLayout boxLayout,
-           int? flex = null, Spacing? spacing = null, Spacing? margin = null)
+           int? flex = null, string spacing = null, string margin = null)
         {
             self.Footer = new BoxComponent(boxLayout)
             {
@@ -274,8 +274,8 @@ namespace Line.Messaging
         /// </param>
         /// <returns>BubbleContainer</returns>
         public static BubbleContainer SetHero(this BubbleContainer self, string imageUrl,
-            int? flex = null, Spacing? margin = null, Align? align = null,
-            Gravity? gravity = null, ComponentSize? size = null, AspectRatio aspectRatio = null,
+            int? flex = null, string margin = null, Align? align = null,
+            Gravity? gravity = null, string size = null, string aspectRatio = null,
             AspectMode? aspectMode = null, string backgroundColor = null)
         {
             self.Hero = new ImageComponent(imageUrl)

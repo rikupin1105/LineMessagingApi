@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Line.Messaging
+﻿namespace Line.Messaging
 {
-    public enum Corner
+    public class Corner
     {
-        none,
-        xs,
-        sm,
-        md,
-        lg,
-        xl,
-        xxl
+        public static string none = "none";
+        public static string xs = "xs";
+        public static string sm = "sm";
+        public static string md = "md";
+        public static string lg = "lg";
+        public static string xl = "xl";
+        public static string xxl = "xxl";
     }
 }

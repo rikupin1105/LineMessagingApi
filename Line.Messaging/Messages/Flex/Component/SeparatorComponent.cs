@@ -7,7 +7,7 @@ namespace Line.Messaging
     public class SeparatorComponent : IFlexComponent
     {
         public FlexComponentType Type => FlexComponentType.Separator;
-        public Spacing? Margin { get; set; }
+        public string Margin { get; set; }
         public string Color { get; set; }
     }
 }

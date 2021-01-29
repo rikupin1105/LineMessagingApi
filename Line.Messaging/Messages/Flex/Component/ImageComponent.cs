@@ -5,7 +5,7 @@
         public FlexComponentType Type => FlexComponentType.Image;
         public string Url { get; set; }
         public int? Flex { get; set; }
-        public Spacing? Margin { get; set; }
+        public string Margin { get; set; }
         public Position Position { get; set; }
         public string OffsetTop { get; set; }
         public string OffsetBottom { get; set; }
@@ -13,8 +13,8 @@
         public string OffsetEnd { get; set; }
         public Align? Align { get; set; }
         public Gravity? Gravity { get; set; }
-        public ComponentSize? Size { get; set; }
-        public AspectRatio AspectRatio { get; set; }
+        public string Size { get; set; }
+        public string AspectRatio { get; set; }
         public AspectMode? AspectMode { get; set; }
         public string BackgroundColor { get; set; }
         public ITemplateAction Action { get; set; }

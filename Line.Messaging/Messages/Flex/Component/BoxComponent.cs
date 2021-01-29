@@ -19,13 +19,13 @@ namespace Line.Messaging
         public IList<IFlexComponent> Contents { get; set; } = new List<IFlexComponent>();
         public string BackgroundColor { get; set; }
         public string BorderColor { get; set; }
-        public BorderWidth BorderWidth { get; set; }
-        public Corner CornerRadius { get; set; }
+        public string BorderWidth { get; set; }
+        public string CornerRadius { get; set; }
         public string Width { get; set; }
         public string Height { get; set; }
         public int? Flex { get; set; }
-        public Spacing? Spacing { get; set; }
-        public Spacing? Margin { get; set; }
+        public string Spacing { get; set; }
+        public string Margin { get; set; }
         public string PaddingAll { get; set; }
         public string PaddingTop { get; set; }
         public string PaddingBottom { get; set; }

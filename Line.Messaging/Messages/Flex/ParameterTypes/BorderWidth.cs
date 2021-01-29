@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Line.Messaging
+﻿namespace Line.Messaging
 {
-    public enum BorderWidth
+    public class BorderWidth
     {
-        none,
-        light,
-        normal,
-        medium,
-        semibold,
-        bold
+        public static string none = "none";
+        public static string light = "light";
+        public static string normal = "normal";
+        public static string medium = "medium";
+        public static string semibold = "semibold";
+        public static string bold = "bold";
     }
 }

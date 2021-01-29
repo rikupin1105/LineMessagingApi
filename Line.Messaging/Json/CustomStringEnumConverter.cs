@@ -13,10 +13,6 @@ namespace Line.Messaging
         private readonly IDictionary<TEnum, string> enumStrPairs;
 
 
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(ComponentSize);
-        }
 
         public CustomStringEnumConverter(IDictionary<TEnum, string> enumStrPairs)
         {
