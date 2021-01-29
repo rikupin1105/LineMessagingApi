@@ -15,6 +15,15 @@ var LineMessagingClient = new LineMessagingClient("ChannelAccessToken");
 
 # API Refarence
 ## Reply
+
+## ReplyMessageAsync(replyToken, messages, notificationDisabled)
+|Param|Type|required|Description|
+|---|---|---|---|
+|replytoken| `String`|○|`replyToken` received via webhook.|
+|messages|`String`|○|
+|notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
+---
+
 ## ReplyTextAsync(replyToken, message, notificationDisabled, quickReply, messageSender)
 |Param|Type|required|Description|
 |---|---|---|---|
@@ -88,11 +97,19 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |messageSender|`MessageSender`||
 
 <br>
-<br>
 
 ---
 
 ## Push
+## PushMessageAsync(to, messages, notificationDisabled)
+|Param|Type|required|Description|
+|---|---|---|---|
+|to| `String`|○||
+|messages|`String`|○|
+|notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
+
+---
+
 ## PushTextAsync(to, message, notificationDisabled, quickReply, messageSender)
 |Param|Type|required|Description|
 |---|---|---|---|
