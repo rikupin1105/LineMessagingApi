@@ -1,6 +1,6 @@
 # 「Hello,World!」メッセージを送る
 最初のステップとして、「Hello, World!」メッセージを作成してみましょう。  
-![HelloWorld!](img/Flex_1.png)
+![HelloWorld!](https://github.com/rikupin1105/LineMessagingApi/blob/main/doc/IMG/Flex_1.png?raw=true)
 ```cs
 new FlexMessage("代替テキスト")
 {
