@@ -13,86 +13,35 @@ namespace Line.Messaging
     {
         #region Message 
 
+
+
         /// <summary>
         /// 応答メッセージを送る。
         /// Send response messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
-        /// <param name="replyToken">ReplyToken</param>
-        /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
         Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false);
+        Task ReplyTextAsync(string replyToken, string message, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task ReplyStickerAsync(string replyToken, string packageId, string stickerId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task ReplyImageAsync(string replyToken, string originalContentUrl, string previewImageUrl, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task ReplyVideoAsync(string replyToken, string originalContentUrl, string previewImageUrl, string trackingId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task ReplyAudioAsync(string replyToken, string originalContentUrl, long duration, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task ReplyLocationAsync(string replyToken, string title, string address, decimal latitude, decimal longitude, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
 
         /// <summary>
-        /// 応答メッセージを送る。
-        /// Send response messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
-        /// </summary>
-        /// <param name="replyToken">ReplyToken</param>
-        /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        Task ReplyMessageAsync(string replyToken, string message, bool notificationDisabled = false);
-
-        /// <summary>
-        /// 応答メッセージを送る。
-        /// Send response messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
-        /// </summary>
-        /// <param name="replyToken">ReplyToken</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        /// <param name="messages">Reply Text messages. Up to 5 messages.</param>
-        Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages);
-
-        /// <summary>
-        /// 応答メッセージを送る。
-        /// Send response messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
-        /// </summary>
-        /// <param name="replyToken">ReplyToken</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
-        Task ReplyMessageWithJsonAsync(string replyToken, bool notificationDisabled = false, params string[] messages);
-
-        /// <summary>
-        /// 応答メッセージを送る。
+        /// プッシュメッセージを送る。
         /// Send response messages.
         /// /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
-        /// <param name="to">ID of the receiver</param>
-        /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
         Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false);
-
-        /// <summary>
-        /// プッシュメッセージを送る。
-        /// Send push messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
-        /// </summary>
-        /// <param name="to">ID of the receiver</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        Task PushMessageAsync(string to, string message, bool notificationDisabled = false);
-
-        /// <summary>
-        /// プッシュメッセージを送る。
-        /// Send push messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
-        /// </summary>
-        /// <param name="to">ID of the receiver</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
-        Task PushMessageWithJsonAsync(string to, bool notificationDisabled = false, params string[] messages);
+        Task PushTextAsync(string to, string message, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task PushStickerAsync(string to, string packageId, string stickerId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task PushImageAsync(string to, string originalContentUrl, string previewImageUrl, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task PushVideoAsync(string to, string originalContentUrl, string previewImageUrl, string trackingId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task PushAudioAsync(string to, string originalContentUrl, long duration, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
+        Task PushLocationAsync(string to, string title, string address, decimal latitude, decimal longitude, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null);
 
 
-        /// <summary>
-        /// プッシュメッセージを送る。
-        /// Send push messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
-        /// </summary>
-        /// <param name="to">ID of the receiver</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        /// <param name="messages">Reply text messages. Up to 5 messages.</param>
-        Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// マルチキャストメッセージを送る。
@@ -148,7 +97,7 @@ namespace Line.Messaging
         /// </summary>
         /// <param name="notificationDisabled">Notify the user.</param>
         /// <param name="messages">Reply text messages. Up to 5 messages.</param>
-        Task BroadCastMessageAsync( bool notificationDisabled = false, params string[] messages);
+        Task BroadCastMessageAsync(bool notificationDisabled = false, params string[] messages);
 
         /// <summary>
         /// コンテンツを取得する
