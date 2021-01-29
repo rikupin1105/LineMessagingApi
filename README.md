@@ -10,7 +10,7 @@
 ### .Net Standard クラスライブラリ   
 NuGet マネージャーなどでプロジェクトに参照可能です。
 
-[NuGet ギャラリー | Line.Messaging](https://www.nuget.org/packages/Line.Messaging.rikupin/)  
+[NuGet ギャラリー | Line.Messaging.rikupin](https://www.nuget.org/packages/Line.Messaging.rikupin/)  
 
 # 利用方法
 ### インストール
@@ -94,7 +94,7 @@ namespace FunctionAppSample
 {
   public static class HttpTriggerFunction
   {
-    [FunctionName("FreedomBot")]
+    [FunctionName("LineBot")]
     public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequestMessage req, ILogger log)
     {
       {
@@ -127,13 +127,20 @@ WebhookApplication を継承したクラスを作成し、各種イベント発�
 ```cs
 public abstract class WebhookApplication
 {
-  protected virtual Task OnMessageAsync(MessageEvent ev);
-  protected virtual Task OnJoinAsync(JoinEvent ev);
-  protected virtual Task OnLeaveAsync(LeaveEvent ev);
-  protected virtual Task OnFollowAsync(FollowEvent ev);
-  protected virtual Task OnUnfollowAsync(UnfollowEvent ev);
-  protected virtual Task OnBeaconAsync(BeaconEvent ev);
-  protected virtual Task OnPostbackAsync(PostbackEvent ev);
+    protected virtual Task OnMessageAsync(MessageEvent ev);
+    protected virtual Task OnUnsendAsync(UnsendEvent ev);
+    protected virtual Task OnJoinAsync(JoinEvent ev);
+    protected virtual Task OnLeaveAsync(LeaveEvent ev);
+    protected virtual Task OnFollowAsync(FollowEvent ev);
+    protected virtual Task OnUnfollowAsync(UnfollowEvent ev);
+    protected virtual Task OnVideoPlayCompleteAsync(VideoPlayCompleteEvent ev);
+    protected virtual Task OnBeaconAsync(BeaconEvent ev);
+    protected virtual Task OnPostbackAsync(PostbackEvent ev);
+    protected virtual Task OnAccountLinkAsync(AccountLinkEvent ev);
+    protected virtual Task OnMemberJoinAsync(MemberJoinEvent ev);
+    protected virtual Task OnMemberLeaveAsync(MemberLeaveEvent ev);
+    protected virtual Task OnDeviceLinkAsync(DeviceLinkEvent ev);
+    protected virtual Task OnDeviceUnlinkAsync(DeviceUnlinkEvent ev);
 }
 
 ```
