@@ -1,10 +1,4 @@
 # LINE Messaging API
-## 目次
----
-<br>
-<br>
-<br>
-
 # Installation
 ```
 dotnet add package Line.Messaging.rikupin
@@ -20,181 +14,143 @@ Install-Package Line.Messaging.rikupin
 var LineMessagingClient = new LineMessagingClient("ChannelAccessToken");
 ```
 
-# Message objects
-### Text Message
-|Param|Type|Description|
-|---|---|---|
-|type| `String`|`text`|
-|text|`String`|Text of Message|
-
-<br>
-
-|Option pram|Type|Description|
-|---|---|---|
-|emojis|Array of LINE emoji objects|One or more LINE emojis
-|emojis.index|`Int`|The position of $ in the text property, with 0 being the beginning of the text.
-|emojis.productId|`String`|Product ID indicating a set of LINE emojis.
-|emojis.emojiId|`String`|The ID of the LINE emoji in the product ID.
-
-<br>
----
-
-### Sticker Message
-|Param|Type|Description|
-|---|---|---|
-|type| `String`|`sticker`|
-|packageId|`String`|Package ID of the sticker set.|
-|stickerId|`String`|Sticker ID
-
-<br>
-
----
-
-### Image Message
-|Param|Type|Description|
-|---|---|---|
-|type| `String`|`image`|
-|originalContentUrl|`String`|Image URL|
-|previewImageUrl|`String`|URL of the preview Image
-
-<br>
-
----
-
-### Video Message
-|Param|Type|Description|
-|---|---|---|
-|type| `String`|`video`|
-|originalContentUrl|`String`|Video URL|
-|previewImageUrl|`String`|URL of the preview Image|
-
-<br>
-
-|Option pram|Type|Description|
-|---|---|---|
-|trackingId|`String`|ID to identify the video when the video viewing completion event occurs.
-
-<br>
-
----
-
-### Audio Message
-|Param|Type|Description|
-|---|---|---|
-|type| `String`|`audio`|
-|originalContentUrl|`String`|Audio URL|
-|duration|`int`|Length of the audio file|
-
-<br>
-
----
-
-### Location Message
-|Param|Type|Description|
-|---|---|---|
-|type| `String`|`location`|
-|title|`String`|Title|
-|address|`string`|Address|
-|latitude|`Decimal`|Latitude
-|longitude|`Decimal`|Longitude
-
-<br>
-
----
-
-### ImageMap Message
-|Param|Type|Description|
-|---|---|---|
-|type| `String`|`imagemap`|
-|baseUrl|`String`|Base URL of the image|
-|altText|`string`|Alternative text|
-|baseSize.width|`Int`|Width of the basic image
-|baseSize.height|`Int`|The height of the basic image when its width is 1040px.
-|action|Array of ImageMap Action Objects|
-
-<br>
-
-|Option pram|Type|Description|
-|---|---|---|
-|video.previewImageUrl|`String`|URL of preview image
-|video.area.x|`Int`|
-|video.area.y|`Int`|
-|video.area.width|`Int`|
-|video.area.height|`Int`|
-|video.externalLink.linkUri|`String`|
-|video.externalLink.label|`String`|
-
-<br>
-<br>
-
 # API Refarence
 ## Reply
-## `ReplyMessageAsync(replytoken, message, option)`
+## ReplyTextAsync(replyToken, message, notificationDisabled = false, quickReply = null, messageSender = null)
 |Param|Type|Description|
 |---|---|---|
 |replytoken| `String`|`replyToken` received via webhook.|
 |message|`String`|Text message|
-
-<br>
-
-|Option pram|Type|Description|
-|---|---|---|
-|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
 
 Example:
 ```cs
-await LineMessagingClient.ReplyMessageAsync(replytoken, "Helloworld")
+await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 ```
-<br>
+---
 
-## `ReplyMessageAsync(replytoken, messages, option)`
-
+## ReplyStickerAsync(replyToken, packageId, stickerId, notificationDisabled = false, quickReply = null, messageSender = null)
 |Param|Type|Description|
 |---|---|---|
 |replytoken| `String`|`replyToken` received via webhook.|
-|message|`IList<ISendMessage>`|List of objects which contains the contents of the message to be sent.|
+|packageId|`String`||
+|stickerId|`String`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
+---
 
-|Option pram|Type|Description|
+## ReplyImageAsync(replyToken, originalContentUrl, previewImageUrl, notificationDisabled = false, quickReply = null, messageSender = null)
+|Param|Type|Description
 |---|---|---|
-|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.
+|replytoken| `String`|`replyToken` received via webhook.|
+|originalContentUrl|`String`||
+|previewImageUrl|`String`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
+---
 
-Example:
-```cs
-await LineMessagingClient.ReplyMessageAsync(replytoken, messages)
-```
+## ReplyVideoAsync(replyToken, originalContentUrl, previewImageUrl, trackingId, notificationDisabled = false, quickReply = null, messageSender = null)
+|Param|Type|Description|
+|---|---|---|
+|replytoken| `String`|`replyToken` received via webhook.|
+|originalContentUrl|`String`||
+|previewImageUrl|`String`||
+|trackingId|`String`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
+---
+
+## ReplyAudioAsync(replyToken, originalContentUrl, duration, notificationDisabled = false, quickReply = null, messageSender = null)
+|Param|Type|Description|
+|---|---|---|
+|replytoken| `String`|`replyToken` received via webhook.|
+|originalContentUrl|`String`||
+|duration|`long`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
+---
+
+## ReplyLocationAsync(replyToken, title, address, latitude, longitude, notificationDisabled = false, quickReply = null, messageSender = null)
+
+<br>
+<br>
 ---
 
 ## Push
-## `PushMessageAsync(to, message, option)`
+## PushTextAsync(to, message, notificationDisabled = false, quickReply = null, messageSender = null)
 |Param|Type|Description|
 |---|---|---|
-|to| `String`|ID of the destination|
+|to| `String`||
 |message|`String`|Text message|
-
-<br>
-
-|Option pram|Type|Description|
-|---|---|---|
-|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
 
 Example:
 ```cs
-await LineMessagingClient.PushMessageAsync(to, "Helloworld")
+await LineMessagingClient.PushTextAsync(to, "Helloworld");
 ```
-<br>
+---
 
-## `PushMessageAsync(to, messages, option)`
-
+## PushStickerAsync(to, packageId, stickerId, notificationDisabled = false, quickReply = null, messageSender = null)
 |Param|Type|Description|
 |---|---|---|
-|to| `String`|ID of the destination|
-|message|`IList<ISendMessage>`|List of objects which contains the contents of the message to be sent.|
+|to| `String`||
+|packageId|`String`||
+|stickerId|`String`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
+---
 
-|Option pram|Type|Description|
+## PushImageAsync(to, originalContentUrl, previewImageUrl, notificationDisabled = false, quickReply = null, messageSender = null)
+|Param|Type|Description
 |---|---|---|
-|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.
+|to| `String`||
+|originalContentUrl|`String`||
+|previewImageUrl|`String`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
+---
 
-Example:
-```cs
-await LineMessagingClient.PushMessageAsync(to, messages)
-```
+## PushVideoAsync(to, originalContentUrl, previewImageUrl, trackingId, notificationDisabled = false, quickReply = null, messageSender = null)
+|Param|Type|Description|
+|---|---|---|
+|to| `String`||
+|originalContentUrl|`String`||
+|previewImageUrl|`String`||
+|trackingId|`String`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
+---
+
+## PushAudioAsync(to, originalContentUrl, duration, notificationDisabled = false, quickReply = null, messageSender = null)
+|Param|Type|Description|
+|---|---|---|
+|to| `String`||
+|originalContentUrl|`String`||
+|duration|`long`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||
+---
+
+## PushLocationAsync(to, title, address, latitude, longitude, notificationDisabled = false, quickReply = null, messageSender = null)
+|Param|Type|Description|
+|---|---|---|
+|to| `String`||
+|title|`String`||
+|address|`String`||
+|latitude|`Decimal`||
+|longitude|`Decimal`||
+|notificationDisabled|`bool`|`true` The user is not notified when a message is sent.|
+|quickReply|`QuickReply`||
+|messageSender|`MessageSender`||

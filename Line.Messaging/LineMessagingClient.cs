@@ -115,9 +115,6 @@ namespace Line.Messaging
         /// Send response messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
         /// </summary>
-        /// <param name="replyToken">ReplyToken</param>
-        /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
         public virtual async Task ReplyMessageAsync(string replyToken, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/reply");
@@ -127,77 +124,37 @@ namespace Line.Messaging
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// 応答メッセージを送る。
-        /// Send response messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
-        /// </summary>
-        /// <param name="replyToken">ReplyToken</param>
-        /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        public virtual Task ReplyMessageAsync(string replyToken, string message, bool notificationDisabled = false)
+        public virtual Task ReplyTextAsync(string replyToken, string message, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
         {
-            return ReplyMessageAsync(replyToken, new ISendMessage[] { new TextMessage(message) }, notificationDisabled);
+            return ReplyMessageAsync(replyToken, new ISendMessage[] { new TextMessage(message, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task ReplyStickerAsync(string replyToken, string packageId, string stickerId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return ReplyMessageAsync(replyToken, new ISendMessage[] { new StickerMessage(packageId, stickerId, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task ReplyImageAsync(string replyToken, string originalContentUrl, string previewImageUrl, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return ReplyMessageAsync(replyToken, new ISendMessage[] { new ImageMessage(originalContentUrl, previewImageUrl, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task ReplyVideoAsync(string replyToken, string originalContentUrl, string previewImageUrl, string trackingId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return ReplyMessageAsync(replyToken, new ISendMessage[] { new VideoMessage(originalContentUrl, previewImageUrl, trackingId, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task ReplyAudioAsync(string replyToken, string originalContentUrl, long duration, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return ReplyMessageAsync(replyToken, new ISendMessage[] { new AudioMessage(originalContentUrl, duration, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task ReplyLocationAsync(string replyToken, string title, string address, decimal latitude, decimal longitude, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return ReplyMessageAsync(replyToken, new ISendMessage[] { new LocationMessage(title, address, latitude, longitude, quickReply, messageSender) }, notificationDisabled);
         }
 
-        /// <summary>
-        /// 応答メッセージを送る。
-        /// Send response messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
-        /// </summary>
-        /// <param name="replyToken">ReplyToken</param>
-        /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        public virtual Task ReplyMessageAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
-        {
-            return ReplyMessageAsync(replyToken, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
-        }
-
-        /// <summary>
-        /// 応答メッセージを送る。
-        /// Send response messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-reply-message
-        /// </summary>
-        /// <param name="replyToken">ReplyToken</param>
-        /// <param name="messages">Reply messages. Up to 5 messages.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        public virtual async Task ReplyMessageWithJsonAsync(string replyToken, bool notificationDisabled = false, params string[] messages)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/reply");
-            var json =
-$@"{{ 
-    ""replyToken"" : ""{replyToken}"", 
-    ""messages"" : [{string.Join(", ", messages)}],
-    ""notificationDisabled"" : {notificationDisabled}
-}}";
-            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _client.SendAsync(request).ConfigureAwait(false);
-            await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
-        }
 
         /// <summary>
         /// プッシュメッセージを送る。
         /// Send push messages.
         /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
         /// </summary>
-        /// <param name="to">ID of the receiver</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        public virtual Task PushMessageAsync(string to, string message, bool notificationDisabled = false)
-        {
-            return PushMessageAsync(to, new ISendMessage[] { new TextMessage(message) }, notificationDisabled);
-        }
-
-        /// <summary>
-        /// プッシュメッセージを送る。
-        /// Send push messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
-        /// </summary>
-        /// <param name="to">ID of the receiver</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
         public virtual async Task PushMessageAsync(string to, IList<ISendMessage> messages, bool notificationDisabled = false)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/push");
@@ -207,42 +164,29 @@ $@"{{
             var response = await _client.SendAsync(request).ConfigureAwait(false);
             await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// プッシュメッセージを送る。
-        /// Send push messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
-        /// </summary>
-        /// <param name="to">ID of the receiver</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
-        public virtual async Task PushMessageWithJsonAsync(string to, bool notificationDisabled = false, params string[] messages)
+        public virtual Task PushTextAsync(string to, string message, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, $"{_uri}/bot/message/push");
-            var json =
-$@"{{ 
-    ""to"" : ""{to}"", 
-    ""messages"" : [{string.Join(", ", messages)}],
-    ""notificationDisabled"" : {notificationDisabled}
-}}";
-            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _client.SendAsync(request).ConfigureAwait(false);
-            await response.EnsureSuccessStatusCodeAsync().ConfigureAwait(false);
+            return PushMessageAsync(to, new ISendMessage[] { new TextMessage(message, quickReply, messageSender) }, notificationDisabled);
         }
-
-
-        /// <summary>
-        /// プッシュメッセージを送る。
-        /// Send push messages.
-        /// https://developers.line.biz/ja/reference/messaging-api/#send-push-message
-        /// </summary>
-        /// <param name="to">ID of the receiver</param>
-        /// <param name="notificationDisabled">Notify the user.</param>
-        /// <param name="messages">Set reply messages with Json string.</param>
-        public virtual Task PushMessageAsync(string to, bool notificationDisabled = false, params string[] messages)
+        public virtual Task PushStickerAsync(string to, string packageId, string stickerId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
         {
-            return PushMessageAsync(to, messages.Select(msg => new TextMessage(msg)).ToArray(), notificationDisabled);
+            return PushMessageAsync(to, new ISendMessage[] { new StickerMessage(packageId, stickerId, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task PushImageAsync(string to, string originalContentUrl, string previewImageUrl, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return PushMessageAsync(to, new ISendMessage[] { new ImageMessage(originalContentUrl, previewImageUrl, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task PushVideoAsync(string to, string originalContentUrl, string previewImageUrl, string trackingId, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return PushMessageAsync(to, new ISendMessage[] { new VideoMessage(originalContentUrl, previewImageUrl, trackingId, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task PushAudioAsync(string to, string originalContentUrl, long duration, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return PushMessageAsync(to, new ISendMessage[] { new AudioMessage(originalContentUrl, duration, quickReply, messageSender) }, notificationDisabled);
+        }
+        public virtual Task PushLocationAsync(string to, string title, string address, decimal latitude, decimal longitude, bool notificationDisabled = false, QuickReply quickReply = null, MessageSender messageSender = null)
+        {
+            return PushMessageAsync(to, new ISendMessage[] { new LocationMessage(title, address, latitude, longitude, quickReply, messageSender) }, notificationDisabled);
         }
 
         /// <summary>
