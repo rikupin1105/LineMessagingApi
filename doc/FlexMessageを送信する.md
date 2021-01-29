@@ -25,15 +25,12 @@ new FlexMessage("代替テキスト")
 }
 ```
 1-5の意味は以下のとおりです。
-|    |    |
-| ---- | ---- |
-|  1  |  単体のメッセージバブルを表すバブルを作成します。  |
-|  2  |  ボックスを作成します。  |
-|  3  |  ボックスの layout プロパティに horizontal を指定します。  |
-|  4  |  ボックスの contents プロパティに、ボックスに含めるコンポーネントを配列で指定します。  |
-|  5  |  「Hello,」と「World!」の2つのテキストを挿入します。  |
+1. 単体のメッセージバブルを表すバブルを作成します。
+2. ボックスを作成します。
+3. ボックスの layout プロパティに horizontal を指定します。
+4. ボックスの contents プロパティに、ボックスに含めるコンポーネントを配列で指定します。
+5. 「Hello」と「World!」の2つのテキストを挿入します。
 
-<br>
 <br>
 
 ## 送信する
@@ -46,21 +43,23 @@ var messages = new ISendMessage[]
         {
             Body = new BoxComponent()
             {
-                Layout=BoxLayout.Horizontal,
+                Layout = BoxLayout.Horizontal,
                 Contents = new IFlexComponent[]
                 {
                     new TextComponent()
                     {
-                        Text="hello"
+                        Text = "hello"
                     },
                     new TextComponent()
                     {
-                        Text="world"
+                        Text = "world"
                     }
                 }
             }
         }
     }
 };
+//リプライやプッシュで送信する
 await LineMessagingClient.ReplyMessageAsync("リプライトークン", messages);
+await LineMessagingClient.PushMessageAsync("to",messages);
 ```
