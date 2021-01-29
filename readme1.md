@@ -3,7 +3,6 @@
 ```
 dotnet add package Line.Messaging.rikupin
 ```
-or
 ```
 Install-Package Line.Messaging.rikupin
 ```
@@ -80,6 +79,7 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 
 <br>
 <br>
+
 ---
 
 ## Push
