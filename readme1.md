@@ -133,17 +133,20 @@ new FlexMessage(altText)
 
 
 
-
+## LineMessagingClient Class
 ## Reply
-## ReplyMessageAsync(replyToken, messages, notificationDisabled)
+```cs 
+ReplyMessageAsync(replyToken, messages, notificationDisabled)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
 |messages|`String`|○|
 |notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
 ---
-
-## ReplyTextAsync(replyToken, message, notificationDisabled, quickReply, messageSender)
+```cs 
+ReplyTextAsync(replyToken, message, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
@@ -157,8 +160,9 @@ Example:
 await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 ```
 ---
-
-## ReplyStickerAsync(replyToken, packageId, stickerId, notificationDisabled, quickReply, messageSender)
+```cs
+ReplyStickerAsync(replyToken, packageId, stickerId, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
@@ -169,7 +173,10 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |messageSender|`MessageSender`||
 ---
 
-## ReplyImageAsync(replyToken, originalContentUrl, previewImageUrl, notificationDisabled, quickReply, messageSender)
+```cs
+ReplyImageAsync(replyToken, originalContentUrl, previewImageUrl, notificationDisabled, quickReply, messageSender)
+```
+
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
@@ -180,7 +187,10 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |messageSender|`MessageSender`||
 ---
 
-## ReplyVideoAsync(replyToken, originalContentUrl, previewImageUrl, trackingId, notificationDisabled, quickReply, messageSender)
+```cs
+ReplyVideoAsync(replyToken, originalContentUrl, previewImageUrl, trackingId, notificationDisabled, quickReply, messageSender)
+```
+
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
@@ -191,8 +201,9 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
-
-## ReplyAudioAsync(replyToken, originalContentUrl, duration, notificationDisabled, quickReply, messageSender)
+```cs
+ReplyAudioAsync(replyToken, originalContentUrl, duration, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
@@ -203,7 +214,9 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 |messageSender|`MessageSender`||
 ---
 
-## ReplyLocationAsync(replyToken, title, address, latitude, longitude, notificationDisabled, quickReply, messageSender)
+```cs
+ ReplyLocationAsync(replyToken, title, address, latitude, longitude, notificationDisabled, quickReply, messageSender)
+ ```
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|
@@ -217,15 +230,18 @@ await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 ---
 
 ## Push
-## PushMessageAsync(to, messages, notificationDisabled)
+```cs
+PushMessageAsync(to, messages, notificationDisabled)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○||
 |messages|`String`|○|
 |notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
 ---
-
-## PushTextAsync(to, message, notificationDisabled, quickReply, messageSender)
+```cs
+PushTextAsync(to, message, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -239,8 +255,9 @@ Example:
 await LineMessagingClient.PushTextAsync(to, "Helloworld");
 ```
 ---
-
-## PushStickerAsync(to, packageId, stickerId, notificationDisabled, quickReply, messageSender)
+```cs
+PushStickerAsync(to, packageId, stickerId, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -250,8 +267,9 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
-
-## PushImageAsync(to, originalContentUrl, previewImageUrl, notificationDisabled, quickReply, messageSender)
+```cs
+PushImageAsync(to, originalContentUrl, previewImageUrl, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -261,8 +279,9 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
-
-## PushVideoAsync(to, originalContentUrl, previewImageUrl, trackingId, notificationDisabled, quickReply, messageSender)
+```cs
+PushVideoAsync(to, originalContentUrl, previewImageUrl, trackingId, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -273,8 +292,9 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
-
-## PushAudioAsync(to, originalContentUrl, duration, notificationDisabled, quickReply, messageSender)
+```cs
+PushAudioAsync(to, originalContentUrl, duration, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -285,7 +305,9 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 |messageSender|`MessageSender`||
 ---
 
-## PushLocationAsync(to, title, address, latitude, longitude, notificationDisabled, quickReply, messageSender)
+```cs
+PushLocationAsync(to, title, address, latitude, longitude, notificationDisabled, quickReply, messageSender)
+```
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
