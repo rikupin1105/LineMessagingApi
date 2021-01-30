@@ -135,6 +135,7 @@ new FlexMessage(altText)
 
 ## LineMessagingClient Class
 ## Reply
+### ReplyMessageAsync
 ```cs 
 ReplyMessageAsync(replyToken, messages, notificationDisabled)
 ```
@@ -144,6 +145,7 @@ ReplyMessageAsync(replyToken, messages, notificationDisabled)
 |messages|`String`|○|
 |notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
 ---
+### ReplyTextAsync
 ```cs 
 ReplyTextAsync(replyToken, message, notificationDisabled, quickReply, messageSender)
 ```
@@ -160,6 +162,7 @@ Example:
 await LineMessagingClient.ReplyTextAsync(replytoken, "Helloworld");
 ```
 ---
+### ReplyStickerAsync
 ```cs
 ReplyStickerAsync(replyToken, packageId, stickerId, notificationDisabled, quickReply, messageSender)
 ```
@@ -172,11 +175,10 @@ ReplyStickerAsync(replyToken, packageId, stickerId, notificationDisabled, quickR
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
-
+### ReplyImageAsync
 ```cs
 ReplyImageAsync(replyToken, originalContentUrl, previewImageUrl, notificationDisabled, quickReply, messageSender)
 ```
-
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
@@ -186,11 +188,10 @@ ReplyImageAsync(replyToken, originalContentUrl, previewImageUrl, notificationDis
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
-
+### ReplyVideoAsync
 ```cs
 ReplyVideoAsync(replyToken, originalContentUrl, previewImageUrl, trackingId, notificationDisabled, quickReply, messageSender)
 ```
-
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
@@ -201,6 +202,7 @@ ReplyVideoAsync(replyToken, originalContentUrl, previewImageUrl, trackingId, not
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
+### ReplyAudioAsync
 ```cs
 ReplyAudioAsync(replyToken, originalContentUrl, duration, notificationDisabled, quickReply, messageSender)
 ```
@@ -213,7 +215,7 @@ ReplyAudioAsync(replyToken, originalContentUrl, duration, notificationDisabled, 
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
-
+### ReplyLocationAsync
 ```cs
  ReplyLocationAsync(replyToken, title, address, latitude, longitude, notificationDisabled, quickReply, messageSender)
  ```
@@ -230,6 +232,7 @@ ReplyAudioAsync(replyToken, originalContentUrl, duration, notificationDisabled, 
 ---
 
 ## Push
+### PushMessageAsync
 ```cs
 PushMessageAsync(to, messages, notificationDisabled)
 ```
@@ -239,6 +242,8 @@ PushMessageAsync(to, messages, notificationDisabled)
 |messages|`String`|○|
 |notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
 ---
+
+### PushTextAsync
 ```cs
 PushTextAsync(to, message, notificationDisabled, quickReply, messageSender)
 ```
@@ -255,6 +260,7 @@ Example:
 await LineMessagingClient.PushTextAsync(to, "Helloworld");
 ```
 ---
+### PushStickerAsync
 ```cs
 PushStickerAsync(to, packageId, stickerId, notificationDisabled, quickReply, messageSender)
 ```
@@ -267,6 +273,8 @@ PushStickerAsync(to, packageId, stickerId, notificationDisabled, quickReply, mes
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
+
+### PushImageAsync
 ```cs
 PushImageAsync(to, originalContentUrl, previewImageUrl, notificationDisabled, quickReply, messageSender)
 ```
@@ -279,6 +287,8 @@ PushImageAsync(to, originalContentUrl, previewImageUrl, notificationDisabled, qu
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
+
+### PushVideoAsync
 ```cs
 PushVideoAsync(to, originalContentUrl, previewImageUrl, trackingId, notificationDisabled, quickReply, messageSender)
 ```
@@ -292,6 +302,8 @@ PushVideoAsync(to, originalContentUrl, previewImageUrl, trackingId, notification
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
 ---
+
+### PushAudioAsync
 ```cs
 PushAudioAsync(to, originalContentUrl, duration, notificationDisabled, quickReply, messageSender)
 ```
@@ -305,6 +317,7 @@ PushAudioAsync(to, originalContentUrl, duration, notificationDisabled, quickRepl
 |messageSender|`MessageSender`||
 ---
 
+### PushLocationAsync
 ```cs
 PushLocationAsync(to, title, address, latitude, longitude, notificationDisabled, quickReply, messageSender)
 ```
