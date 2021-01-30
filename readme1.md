@@ -14,8 +14,127 @@ var LineMessagingClient = new LineMessagingClient("ChannelAccessToken");
 ```
 
 # API Refarence
-## Reply
+## Create Message objects
+```cs
+var messages = new IList<IsendMessage>[]
+{
+    //Here is the message object
+    //Up to 5.
+}
+```
+### TextMessage
+```cs
+new TextMessage(Text,QuickReply,MessageSender)
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|Text| `String`|○||
+|QuickReply|`QuickReply`||
+|MessageSender|`MessageSender`|||
 
+### StickerMessage
+```cs
+new StickerMessage(packageId,stickerId,QuickReply,MessageSender)
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|packageId| `String`|○||
+|stickerId| `String`|○||
+|QuickReply|`QuickReply`||
+|MessageSender|`MessageSender`|||
+
+### ImageMessage
+```cs
+new ImageMessage(originalContentUrl,previerImageUrl,QuickReply,MessageSender)
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|originalContentUrl| `String`|○||
+|previerImageUrl| `String`|○||
+|QuickReply|`QuickReply`||
+|MessageSender|`MessageSender`|||
+
+### VideoMessage
+```cs
+new VideoMessage(originalContentUrl,previerImageUrl,trackingId,QuickReply,MessageSender)
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|originalContentUrl| `String`|○||
+|previerImageUrl| `String`|○||
+|trackingId| `String`|||
+|QuickReply|`QuickReply`||
+|MessageSender|`MessageSender`|||
+
+### AudioMessage
+```cs
+new AudioMessage(originalContentUrl,duration,QuickReply,MessageSender)
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|originalContentUrl| `String`|○||
+|duration| `long`|○||
+|QuickReply|`QuickReply`||
+|MessageSender|`MessageSender`|||
+
+### LocationMessage
+```cs
+new LocationMessage(title, address, latitude, longitude, quickReply, messageSender)
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|title| `String`|○||
+|address| `String`|○||
+|latitude| `Decimal`|○||
+|longitude| `Decimal`|○||
+|QuickReply|`QuickReply`||
+|MessageSender|`MessageSender`|||
+
+### ImagemapMessage
+```cs
+new ImagemapMessage(baseUrl, altText, baseSize, IList<IImagemapAction> actions, quickReply, Video video = null, MessageSender messageSender = null)
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|baseUrl| `String`|○||
+|altText| `String`|○||
+|baseSize| `ImagemapSize`|○||
+|actions| `IList<IImagemapAction>`|○||
+|QuickReply|`QuickReply`||
+|video|`Video`||
+|MessageSender|`MessageSender`|||
+
+### TemplateMessage
+```cs
+new TemplateMessage(altText, template, quickReply, messageSender)
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|altText| `String`|○||
+|template| `ITemplate`|○||
+|QuickReply|`QuickReply`||
+|MessageSender|`MessageSender`|||
+
+### TemplateMessage
+```cs
+new FlexMessage(altText)
+{
+    Contents = contents
+}
+```
+|Param|Type|required|Description|
+|---|---|---|---|
+|altText| `String`|○||
+|contents| `FlexMessage.Contents`|○||
+
+
+
+
+
+
+
+
+## Reply
 ## ReplyMessageAsync(replyToken, messages, notificationDisabled)
 |Param|Type|required|Description|
 |---|---|---|---|
@@ -121,7 +240,7 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 ```
 ---
 
-## PushStickerAsync(to, packageId, stickerId, notificationDisabled = false, quickReply = null, messageSender = null)
+## PushStickerAsync(to, packageId, stickerId, notificationDisabled, quickReply, messageSender)
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -132,7 +251,7 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 |messageSender|`MessageSender`||
 ---
 
-## PushImageAsync(to, originalContentUrl, previewImageUrl, notificationDisabled = false, quickReply = null, messageSender = null)
+## PushImageAsync(to, originalContentUrl, previewImageUrl, notificationDisabled, quickReply, messageSender)
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -143,7 +262,7 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 |messageSender|`MessageSender`||
 ---
 
-## PushVideoAsync(to, originalContentUrl, previewImageUrl, trackingId, notificationDisabled = false, quickReply = null, messageSender = null)
+## PushVideoAsync(to, originalContentUrl, previewImageUrl, trackingId, notificationDisabled, quickReply, messageSender)
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -155,7 +274,7 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 |messageSender|`MessageSender`||
 ---
 
-## PushAudioAsync(to, originalContentUrl, duration, notificationDisabled = false, quickReply = null, messageSender = null)
+## PushAudioAsync(to, originalContentUrl, duration, notificationDisabled, quickReply, messageSender)
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|
@@ -166,7 +285,7 @@ await LineMessagingClient.PushTextAsync(to, "Helloworld");
 |messageSender|`MessageSender`||
 ---
 
-## PushLocationAsync(to, title, address, latitude, longitude, notificationDisabled = false, quickReply = null, messageSender = null)
+## PushLocationAsync(to, title, address, latitude, longitude, notificationDisabled, quickReply, messageSender)
 |Param|Type|required|Description|
 |---|---|---|---|
 |to| `String`|○|

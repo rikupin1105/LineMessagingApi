@@ -6,7 +6,7 @@
     <Company>rikupin</Company>
     <Product>Line Messaging API</Product>
     <Description></Description>
-    <Version>1.4.7.2</Version>
+    <Version>1.4.7.3</Version>
     <Copyright>https://github.com/rikupin1105/LineMessagingApi/blob/main/LICENSE</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>Line Messaging API;line;bot</PackageTags>
@@ -15,8 +15,8 @@
     <RepositoryUrl>https://github.com/rikupin1105/LineMessagingApi/</RepositoryUrl>
     <RepositoryType></RepositoryType>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>1.4.7.2</AssemblyVersion>
-    <FileVersion>1.4.7.2</FileVersion>
+    <AssemblyVersion>1.4.7.3</AssemblyVersion>
+    <FileVersion>1.4.7.3</FileVersion>
     <PackageId>Line.Messaging.rikupin</PackageId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression></PackageLicenseExpression>
