@@ -92,7 +92,7 @@ new LocationMessage(title, address, latitude, longitude, quickReply, messageSend
 
 ### ImagemapMessage
 ```cs
-new ImagemapMessage(baseUrl, altText, baseSize, IList<IImagemapAction> actions, quickReply, Video video = null, MessageSender messageSender = null)
+new ImagemapMessage(baseUrl, altText, baseSize, actions, quickReply, Video, messageSender)
 ```
 |Param|Type|required|Description|
 |---|---|---|---|
