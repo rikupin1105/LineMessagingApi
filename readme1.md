@@ -1,4 +1,14 @@
 # LINE Messaging API
+
+## 目次
+- [Usage](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#usage)
+    - [Installation](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#installation)
+- [API Referenve](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#api-refarence)
+    - [Create Message Objects](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#create-message-objects)
+    - [LineMessagingClient Class](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#linemessagingclient-class)
+        - [Reply](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#reply)
+        - [Push](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#push)
+
 # Installation
 ```
 dotnet add package Line.Messaging.rikupin
@@ -22,114 +32,21 @@ var messages = new IList<IsendMessage>[]
     //Up to 5.
 }
 ```
-### TextMessage
+### Message object
 ```cs
-new TextMessage(Text,QuickReply,MessageSender)
-```
-|Param|Type|required|Description|
-|---|---|---|---|
-|Text| `String`|○||
-|QuickReply|`QuickReply`||
-|MessageSender|`MessageSender`|||
-
-### StickerMessage
-```cs
-new StickerMessage(packageId,stickerId,QuickReply,MessageSender)
-```
-|Param|Type|required|Description|
-|---|---|---|---|
-|packageId| `String`|○||
-|stickerId| `String`|○||
-|QuickReply|`QuickReply`||
-|MessageSender|`MessageSender`|||
-
-### ImageMessage
-```cs
-new ImageMessage(originalContentUrl,previerImageUrl,QuickReply,MessageSender)
-```
-|Param|Type|required|Description|
-|---|---|---|---|
-|originalContentUrl| `String`|○||
-|previerImageUrl| `String`|○||
-|QuickReply|`QuickReply`||
-|MessageSender|`MessageSender`|||
-
-### VideoMessage
-```cs
-new VideoMessage(originalContentUrl,previerImageUrl,trackingId,QuickReply,MessageSender)
-```
-|Param|Type|required|Description|
-|---|---|---|---|
-|originalContentUrl| `String`|○||
-|previerImageUrl| `String`|○||
-|trackingId| `String`|||
-|QuickReply|`QuickReply`||
-|MessageSender|`MessageSender`|||
-
-### AudioMessage
-```cs
-new AudioMessage(originalContentUrl,duration,QuickReply,MessageSender)
-```
-|Param|Type|required|Description|
-|---|---|---|---|
-|originalContentUrl| `String`|○||
-|duration| `long`|○||
-|QuickReply|`QuickReply`||
-|MessageSender|`MessageSender`|||
-
-### LocationMessage
-```cs
+new TextMessage(Text, QuickReply, MessageSender)
+new StickerMessage(packageId, stickerId, QuickReply, MessageSender)
+new ImageMessage(originalContentUrl, previerImageUrl, QuickReply, MessageSender)
+new VideoMessage(originalContentUrl, previerImageUrl, trackingId, QuickReply, MessageSender)
+new AudioMessage(originalContentUrl, duration, QuickReply, MessageSender)
 new LocationMessage(title, address, latitude, longitude, quickReply, messageSender)
-```
-|Param|Type|required|Description|
-|---|---|---|---|
-|title| `String`|○||
-|address| `String`|○||
-|latitude| `Decimal`|○||
-|longitude| `Decimal`|○||
-|QuickReply|`QuickReply`||
-|MessageSender|`MessageSender`|||
-
-### ImagemapMessage
-```cs
 new ImagemapMessage(baseUrl, altText, baseSize, actions, quickReply, Video, messageSender)
-```
-|Param|Type|required|Description|
-|---|---|---|---|
-|baseUrl| `String`|○||
-|altText| `String`|○||
-|baseSize| `ImagemapSize`|○||
-|actions| `IList<IImagemapAction>`|○||
-|QuickReply|`QuickReply`||
-|video|`Video`||
-|MessageSender|`MessageSender`|||
-
-### TemplateMessage
-```cs
 new TemplateMessage(altText, template, quickReply, messageSender)
-```
-|Param|Type|required|Description|
-|---|---|---|---|
-|altText| `String`|○||
-|template| `ITemplate`|○||
-|QuickReply|`QuickReply`||
-|MessageSender|`MessageSender`|||
-
-### TemplateMessage
-```cs
 new FlexMessage(altText)
 {
     Contents = contents
 }
 ```
-|Param|Type|required|Description|
-|---|---|---|---|
-|altText| `String`|○||
-|contents| `FlexMessage.Contents`|○||
-
-
-
-
 
 
 
