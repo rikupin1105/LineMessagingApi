@@ -1,5 +1,7 @@
 # LINE Messaging API
-
+[![NuGet](https://img.shields.io/nuget/v/Line.Messaging.rikupin.svg)](https://www.nuget.org/packages/Line.Messaging.rikupin)
+[![NuGet](https://img.shields.io/nuget/dt/Line.Messaging.rikupin.svg)](https://www.nuget.org/packages/Line.Messaging.rikupin)  
+This is a C# implementation of the LINE Messaging API.
 ## 目次
 - [Usage](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#usage)
     - [Installation](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#installation)
