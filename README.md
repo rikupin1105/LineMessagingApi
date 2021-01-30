@@ -250,3 +250,103 @@ PushLocationAsync(to, title, address, latitude, longitude, notificationDisabled,
 |notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
 |quickReply|`QuickReply`||
 |messageSender|`MessageSender`||
+
+## Parse Webhook-Events
+Use GetWebhookEventsAsync extension method for incoming request to parse the LINE events from the LINE platform. 
+```cs
+using Line.Messaging;
+using Line.Messaging.Webhooks;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace FunctionAppSample
+{
+  public static class HttpTriggerFunction
+  {
+    [FunctionName("LineBot")]
+    public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequestMessage req, ILogger log)
+    {
+      {
+        try
+        {
+          log.LogInformation(req.Content.ReadAsStringAsync().Result);
+          var channelSecret = "ChannelSecret";
+          var LineMessagingClient = new LineMessagingClient("ChannelAccessToken");
+          var events = await req.GetWebhookEventsAsync(channelSecret);
+
+          var app = new LineBotApp(LineMessagingClient);
+
+          await app.RunAsync(events);
+
+        }
+        catch (InvalidSignatureException e)
+        {
+          return req.CreateResponse(HttpStatusCode.Forbidden, new { e.Message });
+        }
+
+        return req.CreateResponse(HttpStatusCode.OK);
+      }
+    }
+  }
+}
+```
+
+## Process Webhook-events
+Create a class which inherits WebhookApplication class, then overrides the method you want to handle the LINE evnet in your class.
+```cs
+public abstract class WebhookApplication
+{
+    protected virtual Task OnMessageAsync(MessageEvent ev);
+    protected virtual Task OnUnsendAsync(UnsendEvent ev);
+    protected virtual Task OnJoinAsync(JoinEvent ev);
+    protected virtual Task OnLeaveAsync(LeaveEvent ev);
+    protected virtual Task OnFollowAsync(FollowEvent ev);
+    protected virtual Task OnUnfollowAsync(UnfollowEvent ev);
+    protected virtual Task OnVideoPlayCompleteAsync(VideoPlayCompleteEvent ev);
+    protected virtual Task OnBeaconAsync(BeaconEvent ev);
+    protected virtual Task OnPostbackAsync(PostbackEvent ev);
+    protected virtual Task OnAccountLinkAsync(AccountLinkEvent ev);
+    protected virtual Task OnMemberJoinAsync(MemberJoinEvent ev);
+    protected virtual Task OnMemberLeaveAsync(MemberLeaveEvent ev);
+    protected virtual Task OnDeviceLinkAsync(DeviceLinkEvent ev);
+    protected virtual Task OnDeviceUnlinkAsync(DeviceUnlinkEvent ev);
+}
+```
+Finally, instantiate the class and run RunAsync method by giving the parsed LINE events as shown above.
+
+```cs
+class LineBotApp : WebhookApplication
+{
+  private LineMessagingClient LineMessagingClient { get; set; }
+  public LineBotApp(LineMessagingClient lineMessagingClient)
+  {
+      LineMessagingClient = lineMessagingClient;
+  }
+  protected override async Task OnMessageAsync(MessageEvent ev)
+  {
+    switch (ev.Message.Type)
+    {
+      case EventMessageType.Text:
+        break;
+      case EventMessageType.Image:
+        break;
+      case EventMessageType.Audio:
+        break;
+      case EventMessageType.Video:
+        break;
+      case EventMessageType.File:
+        break;
+      case EventMessageType.Location:
+        break;
+      case EventMessageType.Sticker:
+        break;
+    }
+  }
+}
+```
