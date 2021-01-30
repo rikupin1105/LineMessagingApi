@@ -3,13 +3,13 @@
 [![NuGet](https://img.shields.io/nuget/dt/Line.Messaging.rikupin.svg)](https://www.nuget.org/packages/Line.Messaging.rikupin)  
 This is a C# implementation of the LINE Messaging API.
 ## 目次
-- [Usage](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#usage)
-    - [Installation](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#installation)
-- [API Referenve](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#api-refarence)
-    - [Create Message Objects](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#create-message-objects)
-    - [LineMessagingClient Class](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#linemessagingclient-class)
-        - [Reply](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#reply)
-        - [Push](https://github.com/rikupin1105/LineMessagingApi/blob/main/readme1.md#push)
+- [Usage](https://github.com/rikupin1105/LineMessagingApi/blob/main/README.md#usage)
+    - [Installation](https://github.com/rikupin1105/LineMessagingApi/blob/main/README.md#installation)
+- [API Referenve](https://github.com/rikupin1105/LineMessagingApi/blob/main/README.md#api-refarence)
+    - [Create Message Objects](https://github.com/rikupin1105/LineMessagingApi/blob/main/README.md#create-message-objects)
+    - [LineMessagingClient Class](https://github.com/rikupin1105/LineMessagingApi/blob/main/README.md#linemessagingclient-class)
+        - [Reply](https://github.com/rikupin1105/LineMessagingApi/blob/main/README.md#reply)
+        - [Push](https://github.com/rikupin1105/LineMessagingApi/blob/main/README.md#push)
 
 # Installation
 ```
