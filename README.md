@@ -64,7 +64,7 @@ ReplyMessageAsync(replyToken, messages, notificationDisabled)
 |Param|Type|required|Description|
 |---|---|---|---|
 |replytoken| `String`|○|`replyToken` received via webhook.|
-|messages|`String`|○|
+|messages|`Message Object[]`|○|
 |notificationDisabled|`bool`||`true` The user is not notified when a message is sent.|
 ---
 ### ReplyTextAsync
