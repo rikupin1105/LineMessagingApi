@@ -1,4 +1,6 @@
-# LINE Messaging API
+# This repository is not used.
+# The new repository is [here](https://github.com/rikupin1105/line-bot-sdk-csharp)
+
 [![NuGet](https://img.shields.io/nuget/v/Line.Messaging.rikupin.svg)](https://www.nuget.org/packages/Line.Messaging.rikupin)
 [![NuGet](https://img.shields.io/nuget/dt/Line.Messaging.rikupin.svg)](https://www.nuget.org/packages/Line.Messaging.rikupin)  
 This is a C# implementation of the [LINE Messaging API](https://developers.line.biz/ja/reference/messaging-api/).
