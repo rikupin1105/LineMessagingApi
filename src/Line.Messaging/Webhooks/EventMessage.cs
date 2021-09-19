@@ -79,6 +79,23 @@ namespace Line.Messaging.Webhooks
                         mention);
 
                 case EventMessageType.Image:
+                    ContentProvider imageContentProvider = null;
+                    if ((string)message.contentProvider.type == "line")
+                    {
+                        imageContentProvider = new ContentProvider(ContentProviderType.External);
+                    }
+                    else if ((string)message.contentProvider.type == "external")
+                    {
+                        imageContentProvider = new ContentProvider(ContentProviderType.External,
+                                (string)message.contentProvider?.originalContentUrl,
+                                (string)message.contentProvider?.previewContentUrl);
+                    }
+                    return new ImageEventMessage(
+                        messageType,
+                        (string)message.id,
+                        imageContentProvider,
+                        message.imageSet);
+
                 case EventMessageType.Audio:
                 case EventMessageType.Video:
                     ContentProvider contentProvider = null;

@@ -35,7 +35,7 @@
         /// <param name="previewImageUrl">
         /// URL of the preview image. Only included when contentProvider.type is external.
         /// </param>
-        public ContentProvider(ContentProviderType type, string originalContentUrl, string previewImageUrl)
+        public ContentProvider(ContentProviderType type, string originalContentUrl = null, string previewImageUrl = null)
         {
             Type = type;
             OriginalContentUrl = originalContentUrl;
