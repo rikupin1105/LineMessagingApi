@@ -99,9 +99,13 @@ namespace Line.Messaging.Webhooks
                 case EventMessageType.Audio:
                 case EventMessageType.Video:
                     ContentProvider contentProvider = null;
-                    if (Enum.TryParse((string)message.contentProvider?.type, true, out ContentProviderType providerType))
+                    if ((string)message.contentProvider.type == "line")
                     {
-                        contentProvider = new ContentProvider(providerType,
+                        contentProvider = new ContentProvider(ContentProviderType.External);
+                    }
+                    else if ((string)message.contentProvider.type == "external")
+                    {
+                        contentProvider = new ContentProvider(ContentProviderType.External,
                                 (string)message.contentProvider?.originalContentUrl,
                                 (string)message.contentProvider?.previewContentUrl);
                     }
